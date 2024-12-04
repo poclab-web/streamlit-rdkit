@@ -1,0 +1,263 @@
+Name,Description,Description(日本語),Description_Detail,Refarence,Oridinal paper
+MaxEStateIndex,Maximum EState index,,,"Hall, Mohney and Kier. JCICS _31_ 76-81 (1991)",https://doi.org/10.1021/ci00001a012
+MinEStateIndex,Minimum EState index,,,"Hall, Mohney and Kier. JCICS _31_ 76-81 (1991)",https://doi.org/10.1021/ci00001a012
+MaxAbsEStateIndex,Maximum absolute EState index,,,"Hall, Mohney and Kier. JCICS _31_ 76-81 (1991)",https://doi.org/10.1021/ci00001a012
+MinAbsEStateIndex,Minimum absolute EState index,,,"Hall, Mohney and Kier. JCICS _31_ 76-81 (1991)",https://doi.org/10.1021/ci00001a012
+qed,QED stands for quantitative estimation of drug-likeness and the concept was for the first time introduced by Richard Bickerton and coworkers ,医薬品らしさを表す指標,,"Quantifying the chemical beauty of drugs. Nature Chem 4, 90_98 (2012).",https://doi.org/10.1038/nchem.1243
+MolWt,The average molecular weight of the molecule,"分子量の情報
+- 分子量は、純物質の沸点や粘性、希薄溶液の沸点上昇や凝固点降下など様々な物性に影響を与える。",,,
+HeavyAtomMolWt,The average molecular weight of the molecule ignoring hydrogens,水素を抜かした分子量(MolWt),,,
+ExactMolWt,The exact molecular weight of the molecule,"分子量の情報 (質量分析などで必要)
+- 分子量は、純物質の沸点や粘性、希薄溶液の沸点上昇や凝固点降下など様々な物性に影響を与える。",,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+NumValenceElectrons,The number of valence electrons the molecule ,価電子(ValenceElectrons)の合計数,,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+NumRadicalElectrons,The number of radical electrons the molecule has (says nothing about spin state),ラジカルになっている電子の数,,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+MaxPartialCharge,Maximum partial charge,"分子内で極大となる部分電荷の大きさ
+- 分子内の電荷の偏りは、Hardな反応の時に影響がある。",,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+MinPartialCharge,Minimal partial charge,"分子内で極小となる部分電荷の大きさ
+- 分子内の電荷の偏りは、Hardな反応の時に影響がある。",,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+MaxAbsPartialCharge,Maximum absolute partial charge,MaxPartialChargeを絶対値にしたもの。,,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+MinAbsPartialCharge,Minimal partial charge,MinPartialChargeを絶対値にしたもの。,,https://rdkit.org/docs/source/rdkit.Chem.Descriptors.html,
+FpDensityMorgan1,"Morgan fingerprint, radius 1",,,,
+FpDensityMorgan2,"Morgan fingerprint, radius 2",,,,
+FpDensityMorgan3,"Morgan fingerprint, radius 3",,,,
+BCUT2D_MWHI,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.  MWHI : highest eigen value by molecular weight",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_MWLOW,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology. MWLOW :  lowest eigen value by molecular weight",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_CHGHI,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_CHGLO,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_LOGPHI,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_LOGPLOW,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_MRHI,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BCUT2D_MRLOW,"This is the lowest eigenvalue of the connectivity matrix having atomic mass as diagonal elements. Off-diagonal elements depend on the bond order .BCUT2D descriptors have proven very effective for QSAR/QSPR studies due to their good discriminative power . Being dependent on the connectivity matrix and atomic mass, it contains information on molecular size and topology.",https://future-chem.com/rdkit-bcut2d/,,https://rdkit.org/docs/source/rdkit.Chem.rdMolDescriptors.html?highlight=bcut2d#rdkit.Chem.rdMolDescriptors.BCUT2D,https://doi.org/10.1021/ci980109e
+BalabanJ,Balaban's J value,トポロジカル指標J（グラフ不変量としての距離和s iに基づく）,"rdkit.Chem.GraphDescriptors.BalabanJ(mol, dMat=None, forceDMat=0)
+Calculate Balaban’s J value for a molecule
+
+Arguments
+
+mol: a molecule
+
+dMat: (optional) a distance/adjacency matrix for the molecule, if this is not provide, one will be calculated
+
+forceDMat: (optional) if this is set, the distance/adjacency matrix will be recalculated regardless of whether or not _dMat_ is provided or the molecule already has one
+
+Returns
+
+a float containing the J value"," Chem. Phys. Lett. vol 89, 399-404, (1982)",https://doi.org/10.1016/0009-2614(82)80009-2
+BertzCT,"A topological index meant to quantify ""complexity""",分子の複雑さを表す指標(結合の本数起因の自由度+C以外の重原子の存在による自由度(原子の多様性)_),"rdkit.Chem.GraphDescriptors.BertzCT(mol, cutoff=100, dMat=None, forceDMat=1)
+A topological index meant to quantify “complexity” of molecules.
+
+Consists of a sum of two terms, one representing the complexity of the bonding, the other representing the complexity of the distribution of heteroatoms.
+
+“cutoff” is an integer value used to limit the computational expense. A cutoff value tells the program to consider vertices topologically identical if their distance vectors (sets of distances to all other vertices) are equal out to the “cutoff”th nearest-neighbor."," S. H. Bertz, J. Am. Chem. Soc., vol 103, 3599-3601 (1981)",https://doi.org/10.1021/ja00402a071
+Chi0,"From equations (1),(9) and (10) of Rev. Comp. Chem. vol 2, 367-422, (1991)",,,"From equations (1),(9) and (10) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Chi0n,"Similar to Hall Kier Chi0v, but uses nVal instead of valence. This makes a big difference after we get out of the first row",,,"Similar to Hall Kier Chi0v, but uses nVal instead of valence
+  This makes a big difference after we get out of the first row.",https://doi.org/10.1002/9780470125793.ch9
+Chi0v,"From equations (5),(9) and (10) of Rev. Comp. Chem. vol 2, 367-422, (1991)",,,"From equations (5),(9) and (10) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Chi1,"From equations (1),(11) and (12) of Rev. Comp. Chem. vol 2, 367-422, (1991)",,,"From equations (1),(11) and (12) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Chi1n,"Similar to Hall Kier Chi1v, but uses nVal instead of valence",,,"Similar to Hall Kier Chi1v, but uses nVal instead of valence",https://doi.org/10.1002/9780470125793.ch9
+Chi1v,"From equations (5),(11) and (12) of Rev. Comp. Chem. vol 2, 367-422, (1991)",,,"From equations (5),(11) and (12) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Chi2n,"Similar to Hall Kier Chi2v, but uses nVal instead of valence. This makes a big difference after we get out of the first row",,,"Similar to Hall Kier Chi2v, but uses nVal instead of valence
+  This makes a big difference after we get out of the first row.",https://doi.org/10.1002/9780470125793.ch9
+Chi2v,"From equations (5),(15) and (16) of Rev. Comp. Chem. vol 2, 367-422, (1991)",,,"From equations (5),(15) and (16) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Chi3n,"Similar to Hall Kier Chi3v, but uses nVal instead of valence. This makes a big difference after we get out of the first row",,,"Similar to Hall Kier Chi3v, but uses nVal instead of valence
+  This makes a big difference after we get out of the first row.",https://doi.org/10.1002/9780470125793.ch9
+Chi3v,"From equations (5),(15) and (16) of Rev. Comp. Chem. vol 2, 367-422, (1991)",,,"From equations (5),(15) and (16) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Chi4n,"Similar to Hall Kier Chi4v, but uses nVal instead of valence. This makes a big difference after we get out of the first row",,,"Similar to Hall Kier Chi4v, but uses nVal instead of valence
+  This makes a big difference after we get out of the first row.
+  **NOTE**: because the current path finding code does, by design,
+  detect rings as paths (e.g. in C1CC1 there is *1* atom path of
+  length 3), values of Chi4n may give results that differ from those
+  provided by the old code in molecules that have 3 rings.",https://doi.org/10.1002/9780470125793.ch9
+Chi4v,"From equations (5),(15) and (16) of Rev. Comp. Chem. vol 2, 367-422, (1991).",,,"From equations (5),(15) and (16) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+HallKierAlpha,The Hall-Kier alpha value for a molecule,,,The electrotopological state: structure information at the atomic level for molecular graphs,https://doi.org/10.1021/ci00001a012
+Ipc,The information content of the coefficients of the characteristic polynomial of the adjacency matrix of a hydrogen-suppressed graph of a molecule,,,"D. Bonchev & N. Trinajstic, J. Chem. Phys. vol 67, 4517-4533 (1977)",
+Kappa1,"	Hall-Kier Kappa1 value",,,"From equations (58) and (59) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Kappa2,Hall-Kier Kappa2 value,,,"From equations (58) and (60) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+Kappa3,"	Hall-Kier Kappa3 value",,," From equations (58), (61) and (62) of Rev. Comp. Chem. vol 2, 367-422, (1991)",https://doi.org/10.1002/9780470125793.ch9
+LabuteASA,calculates Labute’s Approximate Surface Area (ASA from MOE),表面積(Approximate Surface area)。原子のファンデルワールス半径から分子の表面積を簡易的に求めたもの。,, P. Labute’s article in the Journal of the Chemical Computing Group and J. Mol. Graph. Mod. _18_ 464-477 (2000),https://doi.org/10.1016/S1093-3263(00)00068-1
+PEOE_VSA1,MOE Charge VSA Descriptor 1 (-inf < x < -0.30),,,,
+PEOE_VSA10,MOE Charge VSA Descriptor 10 ( 0.10 <= x < 0.15),,,,
+PEOE_VSA11,MOE Charge VSA Descriptor 11 ( 0.15 <= x < 0.20),,,,
+PEOE_VSA12,MOE Charge VSA Descriptor 12 ( 0.20 <= x < 0.25),,,,
+PEOE_VSA13,MOE Charge VSA Descriptor 13 ( 0.25 <= x < 0.30),,,,
+PEOE_VSA14,MOE Charge VSA Descriptor 14 ( 0.30 <= x < inf),,,,
+PEOE_VSA2,MOE Charge VSA Descriptor 2 (-0.30 <= x < -0.25),,,,
+PEOE_VSA3,MOE Charge VSA Descriptor 3 (-0.25 <= x < -0.20),,,,
+PEOE_VSA4,MOE Charge VSA Descriptor 4 (-0.20 <= x < -0.15),,,,
+PEOE_VSA5,MOE Charge VSA Descriptor 5 (-0.15 <= x < -0.10),,,,
+PEOE_VSA6,MOE Charge VSA Descriptor 6 (-0.10 <= x < -0.05),,,,
+PEOE_VSA7,MOE Charge VSA Descriptor 7 (-0.05 <= x < 0.00),,,,
+PEOE_VSA8,MOE Charge VSA Descriptor 8 ( 0.00 <= x < 0.05),,,,
+PEOE_VSA9,"	MOE Charge VSA Descriptor 9 ( 0.05 <= x < 0.10)",,,,
+SMR_VSA1,MOE MR VSA Descriptor 1 (-inf < x < 1.29),,,,
+SMR_VSA10,MOE MR VSA Descriptor 10 ( 4.00 <= x < inf),,,,
+SMR_VSA2,MOE MR VSA Descriptor 2 ( 1.29 <= x < 1.82),,,,
+SMR_VSA3,MOE MR VSA Descriptor 3 ( 1.82 <= x < 2.24),,,,
+SMR_VSA4,"	MOE MR VSA Descriptor 4 ( 2.24 <= x < 2.45)",,,,
+SMR_VSA5,MOE MR VSA Descriptor 5 ( 2.45 <= x < 2.75),,,,
+SMR_VSA6,MOE MR VSA Descriptor 6 ( 2.75 <= x < 3.05),,,,
+SMR_VSA7,MOE MR VSA Descriptor 7 ( 3.05 <= x < 3.63),,,,
+SMR_VSA8,MOE MR VSA Descriptor 8 ( 3.63 <= x < 3.80),,,,
+SMR_VSA9,MOE MR VSA Descriptor 9 ( 3.80 <= x < 4.00),,,,
+SlogP_VSA1,MOE logP VSA Descriptor 1 (-inf < x < -0.40),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA1はLogPの原子成分の値が-0.4未満の原子の表面積の和",,https://www.rdkit.org/docs/source/rdkit.Chem.MolSurf.html?highlight=slogp_vsa1#rdkit.Chem.MolSurf.SlogP_VSA1,
+SlogP_VSA10,MOE logP VSA Descriptor 10 ( 0.40 <= x < 0.50),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA10はLogPの原子成分が  ( 0.40 <= x < 0.50)を満たす原子の表面積の和",,,
+SlogP_VSA11,MOE logP VSA Descriptor 11 ( 0.50 <= x < 0.60),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA11はLogPの原子成分が  ( 0.50 <= x < 0.60)を満たす原子の表面積の和",,,
+SlogP_VSA12,MOE logP VSA Descriptor 12 ( 0.60 <= x < inf),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA12はLogPの原子成分が 0.6以上の原子の表面積の和",,,
+SlogP_VSA2,MOE logP VSA Descriptor 2 (-0.40 <= x < -0.20),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA2はLogPの原子成分が(-0.40 <= x < -0.20)を満たす原子の表面積の和",,,
+SlogP_VSA3,MOE logP VSA Descriptor 3 (-0.20 <= x < 0.00),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA3はLogPの原子成分が (-0.20 <= x < 0.00)を満たす原子の表面積の和",,,
+SlogP_VSA4,MOE logP VSA Descriptor 4 ( 0.00 <= x < 0.10),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA4はLogPの原子成分が( 0.00 <= x < 0.10)を満たす原子の表面積の和",,,
+SlogP_VSA5,MOE logP VSA Descriptor 5 ( 0.10 <= x < 0.15),"分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA5はLogPの原子成分が( 0.10 <= x < 0.15)を満たす原子の表面積の和",,,
+SlogP_VSA6,MOE logP VSA Descriptor 6 ( 0.15 <= x < 0.20),"""分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA6はLogPの原子成分が ( 0.15 <= x < 0.20)を満たす原子の表面積の和""",,,
+SlogP_VSA7,MOE logP VSA Descriptor 7 ( 0.20 <= x < 0.25),"""""""分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA7はLogPの原子成分が ( 0.20 <= x < 0.25)を満たす原子の表面積の和""""""",,,
+SlogP_VSA8,MOE logP VSA Descriptor 8 ( 0.25 <= x < 0.30),"""""""分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA8はLogPの原子成分が ( 0.25 <= x < 0.30)を満たす原子の表面積の和""""""",,,
+SlogP_VSA9,MOE logP VSA Descriptor 9 ( 0.30 <= x < 0.40),"""""""分子中のある所定の範囲に収まるLogPの原子成分を持つ原子の表面積の和（分子の部分表面積）。
+SlogP_VSA8はLogPの原子成分が ( 0.30 <= x < 0.40)を満たす原子の表面積の和""""""",,,
+TPSA,"	The polar surface area of a molecule based upon fragments.","分子表面のうち極性を帯びている部分の面積値のことで、細胞膜透過性に	関する医薬構造最適化のために使用される指標。全ての極性原子（主に酸	素、窒素、それと結合する水素）の表面総和として定義される。",,,
+EState_VSA1,"	EState VSA Descriptor 1 (-inf < x < -0.39)",,,,
+EState_VSA10,EState VSA Descriptor 10 ( 9.17 <= x < 15.00),,,,
+EState_VSA11,"	EState VSA Descriptor 11 ( 15.00 <= x < inf)",,,,
+EState_VSA2,EState VSA Descriptor 2 ( -0.39 <= x < 0.29),,,,
+EState_VSA3,EState VSA Descriptor 3 ( 0.29 <= x < 0.72),,,,
+EState_VSA4,EState VSA Descriptor 4 ( 0.72 <= x < 1.17),,,,
+EState_VSA5,EState VSA Descriptor 5 ( 1.17 <= x < 1.54),,,,
+EState_VSA6,EState VSA Descriptor 6 ( 1.54 <= x < 1.81),,,,
+EState_VSA7,EState VSA Descriptor 7 ( 1.81 <= x < 2.05),,,,
+EState_VSA8,EState VSA Descriptor 8 ( 2.05 <= x < 4.69),,,,
+EState_VSA9,EState VSA Descriptor 9 ( 4.69 <= x < 9.17),,,,
+VSA_EState1,VSA EState Descriptor 1 (-inf < x < 4.78),,,,
+VSA_EState10,VSA EState Descriptor 10 ( 11.00 <= x < inf),,,,
+VSA_EState2,VSA EState Descriptor 2 ( 4.78 <= x < 5.00),,,,
+VSA_EState3,VSA EState Descriptor 3 ( 5.00 <= x < 5.41),,,,
+VSA_EState4,VSA EState Descriptor 4 ( 5.41 <= x < 5.74),,,,
+VSA_EState5,VSA EState Descriptor 5 ( 5.74 <= x < 6.00),,,,
+VSA_EState6,"	VSA EState Descriptor 6 ( 6.00 <= x < 6.07)",,,,
+VSA_EState7,VSA EState Descriptor 7 ( 6.07 <= x < 6.45),,,,
+VSA_EState8,VSA EState Descriptor 8 ( 6.45 <= x < 7.00),,,,
+VSA_EState9,VSA EState Descriptor 9 ( 7.00 <= x < 11.00),,,,
+FractionCSP3,The fraction of C atoms that are SP3 hybridized,,,,
+HeavyAtomCount,The number of heavy atoms a molecule,分子が持つ重原子の数,,,
+NHOHCount,The number of NHs or Ohs,NHまたはOHの数,,,
+NOCount,The number of Nitrogens and Oxygens,窒素と酸素の数,,,
+NumAliphaticCarbocycles,The number of aliphatic (containing at least one non-aromatic bond) carbocycles for a molecule,分子の脂肪族（少なくとも1つの非芳香族結合を含む）炭素環の数,,,
+NumAliphaticHeterocycles,The number of aliphatic (containing at least one non-aromatic bond) heterocycles for a molecule,分子の脂肪族（少なくとも1つの非芳香族結合を含む）複素環の数,,,
+NumAliphaticRings,The number of aliphatic (containing at least one non-aromatic bond) rings for a molecule,分子の脂肪族（少なくとも1つの非芳香族結合を含む）環の数,,,
+NumAromaticCarbocycles,The number of aromatic carbocycles for a molecule,分子の芳香族炭素環の数,,,
+NumAromaticHeterocycles,The number of aromatic heterocycles for a molecule,1分子の芳香族複素環の数,,,
+NumAromaticRings,number of aromatic rings for a molecule,分子中の芳香環の数,,,
+NumHAcceptors,Number of Hydrogen Bond Acceptors,水素結合アクセプターの数,,,
+NumHDonors,Number of Hydrogen Bond Donors,水素結合ドナーの数,,,
+NumHeteroatoms,Number of Heteroatoms,ヘテロ原子の数,,,
+NumRotatableBonds,"Number of Rotatable Bonds
+",回転可能な結合数,,,
+NumSaturatedCarbocycles,number of saturated carbocycles for a molecule,飽和炭素数,,,
+NumSaturatedHeterocycles,The number of saturated heterocycles for a molecule,分子の飽和複素環の数,,,
+NumSaturatedRings,Number of saturated rings for a molecule,飽和環数,,,
+RingCount,Ring count,環の数,,,
+MolLogP,Wildman-Crippen LogP value,分子のCrippenらによる原子ベースのLogP指標,"改良Crippen(1999)
+オリジナルのGhose_Crippenを改良したものがALOGP98プログラムで，「Prediction of Physicochemical Parameters by Atomic Contributions」の論文に報告されています．
+https://pubs.acs.org/doi/10.1021/ci990307l
+
+Correlation plot for the fit of 9920 log P Star values:_ r2 = 0.918; σ = 0.677.
+```
+ケモインフォマティクスとLogP計算 by 新しい化学のカタチ<br>
+https://future-chem.com/logp/",,
+MolMR,Wildman-Crippen MR value,モル屈折率(MR)、経験的に決められた各原子の寄与の総和により分子屈折を計算。3412分子からなる別のセットはMRへの寄与の決定に用いられ、r2=0.997とσ=1.43であった。,Wildman and G. M. Crippen JCICS 39 868-873 (1999),,https://doi.org/10.1021/ci990307l
+fr_Al_COO,"Number of aliphatic carboxylic acids
+",脂肪族カルボン酸の数,,,
+fr_Al_OH,Number of aliphatic hydroxyl groups,脂肪族ヒドロキシル基の数,,,
+fr_Al_OH_noTert,Number of aliphatic hydroxyl groups excluding tert-OH,tert-OHを除く脂肪族水酸基の数,,,
+fr_ArN,Number of N functional groups attached to aromatics,芳香族に結合しているN官能基の数,,,
+fr_Ar_COO,Number of Aromatic carboxylic acide,芳香族カルボン酸の数,,,
+fr_Ar_N,Number of aromatic nitrogens,芳香族窒素の数,,,
+fr_Ar_NH,Number of aromatic amines,芳香族アミン数,,,
+fr_Ar_OH,"Number of aromatic hydroxyl groups
+",芳香族水酸基の数,,,
+fr_COO,Number of carboxylic acids,カルボン酸の数,,,
+fr_COO2,Number of carboxylic acids,,,,
+fr_C_O,Number of carbonyl O,カルボニルOの数,,,
+fr_C_O_noCOO,"Number of carbonyl O, excluding COOH",COOHを除くカルボニルOの数,,,
+fr_C_S,Number of thiocarbonyl,チオカルボニルの数,,,
+fr_HOCCN,Number of C(OH)CCN-Ctert-alkyl or C(OH)CCNcyclic,C(OH)CCN-tert-アルキルまたはC(OH)CCN-環状の数,,,
+fr_Imine,Number of Imines,イミン数,,,
+fr_NH0,Number of Tertiary amines,3級アミン数,,,
+fr_NH1,Number of Secondary amines,2級アミン数,,,
+fr_NH2,"Number of Primary amines
+",1級アミン数,,,
+fr_N_O,Number of hydroxylamine groups,ヒドロキシルアミン基の数,,,
+fr_Ndealkylation1,Number of XCCNR groups,,,,
+fr_Ndealkylation2,"Number of tert-alicyclic amines (no heteroatoms, not quinine-like bridged N)",tert-脂環式アミン（ヘテロ原子なし、キニーネ型架橋Nでない）の数,,,
+fr_Nhpyrrole,Number of H-pyrrole nitrogens,H-ピロールニトロゲンの数,,,
+fr_SH,Number of thiol groups,チオール基の数,,,
+fr_aldehyde,Number of aldehydes,アルデヒドの数,,,
+fr_alkyl_carbamate,Number of alkyl carbamates (subject to hydrolysis),アルキルカルバメートの数,,,
+fr_alkyl_halide,Number of alkyl halides,ハロゲン化アルキルの数,,,
+fr_allylic_oxid,Number of allylic oxidation sites excluding steroid dienone,,,,
+fr_amide,Number of amides,アミドの数,,,
+fr_amidine,Number of amidine groups,アミジン基の数,,,
+fr_aniline,Number of anilines,アニリン類の数,,,
+fr_aryl_methyl,Number of aryl methyl sites for hydroxylation,,,,
+fr_azide,Number of azide groups,アジド基の数,,,
+fr_azo,Number of azo groups,アゾ基の数,,,
+fr_barbitur,Number of barbiturate groups,,,,
+fr_benzene,Number of benzene rings,ベンゼン環の数,,,
+fr_benzodiazepine,Number of benzodiazepines with no additional fused rings,,,,
+fr_bicyclic,Number of bicyclic,,,,
+fr_diazo,Number of diazo groups,ジアゾ基の数,,,
+fr_dihydropyridine,Number of dihydropyridines,ジヒドロピリジン類の数,,,
+fr_epoxide,Number of epoxide rings,エポキシド環の数,,,
+fr_ester,Number of esters,エステル数,,,
+fr_ether,Number of ether oxygens (including phenoxy),エーテルオキシゲン数(フェノキシを含む),,,
+fr_furan,Number of furan rings,フラン環の数,,,
+fr_guanido,Number of guanidine groups,グアニジン基の数,,,
+fr_halogen,Number of halogens,ハロゲンの数,,,
+fr_hdrzine,Number of hydrazine groups,ヒドラジン基の数,,,
+fr_hdrzone,Number of hydrazone groups,ヒドラゾン基の数,,,
+fr_imidazole,Number of imidazole rings,イミダゾール環の数,,,
+fr_imide,Number of imide groups,イミド基の数,,,
+fr_isocyan,Number of isocyanates,イソシアネート基数,,,
+fr_isothiocyan,Number of isothiocyanates,イソチオシアネートの数,,,
+fr_ketone,Number of ketones,ケトンの数,,,
+fr_ketone_Topliss,"Number of ketones excluding diaryl, a,b-unsat. dienones, heteroatom on Calpha",,,,
+fr_lactam,Number of beta lactams,β-ラクタムの数,,,
+fr_lactone,Number of cyclic esters (lactones),環状エステル（ラクトン）の数,,,
+fr_methoxy,Number of methoxy groups -OCH3,メトキシ基の数 -OCH3,,,
+fr_morpholine,Number of morpholine rings,モルホリン環の数,,,
+fr_nitrile,Number of nitriles,ニトリル数,,,
+fr_nitro,Number of nitro groups,ニトロ基の数,,,
+fr_nitro_arom,Number of nitro benzene ring substituents,ニトロベンゼン環の置換基数,,,
+fr_nitro_arom_nonortho,Number of non-ortho nitro benzene ring substituents,非オルトのニトロベンゼン環の置換基数,,,
+fr_nitroso,"Number of nitroso groups, excluding NO2",ニトロソ基の数、NO2 を除く,,,
+fr_oxazole,Number of oxazole rings,オキサゾール環の数,,,
+fr_oxime,Number of oxime groups,オキシム基の数,,,
+fr_para_hydroxylation,Number of para-hydroxylation sites,パラヒドロキシル化部位の数,,,
+fr_phenol,Number of phenols,フェノール類の数,,,
+fr_phenol_noOrthoHbond,Number of phenolic OH excluding ortho intramolecular Hbond substituents,オルト分子内Hbond置換基を除くフェノールOH置換基の数,,,
+fr_phos_acid,Number of phosphoric acid groups,リン酸基の数,,,
+fr_phos_ester,Number of phosphoric ester groups,リン酸エステル基の数,,,
+fr_piperdine,Number of piperdine rings,ピペルジン環の数,,,
+fr_piperzine,Number of piperzine rings,ピペルジンの環の数,,,
+fr_priamide,Number of primary amides,1級アミドの数,,,
+fr_prisulfonamd,Number of primary sulfonamides,1級スルホンアミド系化合物の数,,,
+fr_pyridine,Number of pyridine rings,ピリジン環の数,,,
+fr_quatN,Number of quarternary nitrogens,4級窒素の数,,,
+fr_sulfide,Number of thioether,チオエーテルの数,,,
+fr_sulfonamd,Number of sulfonamides,スルホンアミドの数,,,
+fr_sulfone,Number of sulfone groups,スルホン基の数,,,
+fr_term_acetylene,Number of terminal acetylenes,末端アセチレンの数,,,
+fr_tetrazole,Number of tetrazole rings,テトラゾール環の数,,,
+fr_thiazole,Number of thiazole rings,チアゾール環の数,,,
+fr_thiocyan,Number of thiocyanates,チオシアン酸塩の数,,,
+fr_thiophene,Number of thiophene rings,チオフェン環の数,,,
+fr_unbrch_alkane,"Number of unbranched alkanes of at least 4 members (excludes halogenated alkanes)
+",4員以上の非分岐アルカン（ハロゲン化アルカンを除く）の数,,,
+fr_urea,Number of urea groups,尿素基の数,,,

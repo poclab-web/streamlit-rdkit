@@ -1,0 +1,12 @@
+
+streamlit
+matplotlib
+rdkit-pypi
+pandas
+numpy
+pycaret
+streamlit_ketcher
+py3Dmol
+stmol
+ipython_genutils
+pubchempy
