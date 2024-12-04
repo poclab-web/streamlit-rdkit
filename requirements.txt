@@ -1,7 +1,6 @@
-
 streamlit
 matplotlib
-rdkit-pypi
+rdkit
 pandas
 numpy
 pycaret
