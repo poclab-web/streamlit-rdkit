@@ -9,3 +9,4 @@ py3Dmol
 stmol
 ipython_genutils
 pubchempy
+pyyaml
