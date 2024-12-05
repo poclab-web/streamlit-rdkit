@@ -1,0 +1,148 @@
+categories:
+  01.化学情報:
+    description: "分子構造の基本的な編集や解析を行うアプリ群です。"
+  02.構造表現:
+    description: "分子構造から色々な構造表を出力するアプリ郡です。"
+  03.整理情報:
+    description: "構造情報を整理するための色々なアプリ郡です。"
+  4.化学数値:
+    description: "化学的に得られた数値を、区分したり解析するアプリ郡です"
+  5.記述子:
+    description: "特定の記述子や特性を計算するためのアプリ群です。"
+  6.計算化学:
+    description: "計算化学を用いたアプリ郡です"
+  7.構造検索:
+    description: "構造検索やデータ解析を目的としたアプリ群です。"
+  8.探索的解析:
+    description: "データを探索的に解析するアプリ郡です。"
+  9.評価指標:
+    description: "教師あり学習のデータの予測値と実測値との差を算出するアプリ郡です"
+  10.機械学習:
+    description: "機械学習のモデルを選択するアプリ郡です"
+  アプリ一覧:
+    description: "アプリケーション一覧を表示するページです。"
+    apps:
+      - title: "📋 アプリ一覧"
+        function: "display_app_overview"
+        description: "Chemoinformatics Tool内のすべてのアプリケーションとその説明を表示します。"
+        show_code: false
+
+apps:
+# 01.化学情報
+  - title: "😀 1.1 SMILESを出力"
+    function: "get_smiles"
+    category: "01.化学情報"
+    description: "分子構造を描画し、SMILES形式で出力します。"
+    show_code: true
+  - title: "🔍 1.2 単分子分析(pubchempy)"
+    function: "pubchem_search"
+    category: "01.化学情報"
+    description: "分子の基本情報を取得します。"
+    show_code: true
+
+# 02.構造表現
+  - title: "🔷 構造の2D描画"
+    category: "02.構造表現"
+    description: "分子構造を2D形式で描画します。"
+    show_code: true
+
+# 03.整理情報
+  - title: "脱塩処理"
+    category: "03.整理情報"
+    description: "分子の脱塩処理を行います"
+    show_code: true
+  - title: "脱立体処理"
+    category: "03.整理情報"
+    description: "分子の脱立体処理を行います"
+    show_code: true
+
+# 4.化学数値
+  - title: "データの型を判定"
+    category: "04.化学数値"
+    description: "データの中の情報を区分(名義尺度, 順序尺度, 間隔尺度, 比例尺度)します"
+    show_code: true
+
+# 5.記述子
+  - title: "☝️morganfingerprint"
+    function: "morgan_fingerprint"
+    category: "05.記述子"
+    description: "Morgan指紋を計算し、分子構造の特徴を解析します。"
+    show_code: true
+
+  - title: "😀SMILES検索(RDKit Descriptor)"
+    function: "rdkit_smiles_search"
+    category: "05.記述子"
+    description: "SMILESからRDKitで算出できる記述子を出力します。"
+    show_code: true
+
+  - title: "📝 Descriptorの内容"
+    function: "rdkit_descriptor_description"
+    category: "05.記述子"
+    description: "RDKitの化学記述子に関する情報を提供します。"
+    show_code: true
+
+  - title: "📑複数分子分析(RDKit Descriptor)"
+    function: "multi_rdkit_smiles_search"
+    category: "05.記述子"
+    description: "複数の分子記述子を一括計算します。"
+    show_code: true
+
+  - title: "📝 RDKit Fragmentsの内容"
+    function: "rdkit_fr_descriptor_description"
+    category: "05.記述子"
+    description: "分子のフラグメント情報を出力します。"
+    show_code: true
+
+  - title: "✌️ RDKit Fingerprint"
+    function: "rdkit_fingerprint"
+    category: "05.記述子"
+    description: "分子のRDKitフィンガープリントを生成します。"
+    show_code: true
+
+  - title: "🧮 合成難易度 (sascore)"
+    function: "rdkit_sascore_analysis"
+    category: "05.記述子"
+    description: "分子の合成難易度を評価します。"
+    show_code: true
+
+# 6.計算化学
+  - title: "🔋 Charge Analysis"
+    function: "rdkit_charge_analysis"
+    category: "06.計算化学"
+    description: "分子のGasteiger部分電荷を解析します。"
+    show_code: true
+
+# 7.構造検索
+  - title: "⭐️SMARTS検索(TCI Compounds)"
+    function: "rdkit_smarts_search"
+    category: "07.構造検索"
+    description: "SMARTSパターンを用いた構造検索を行います。"
+    show_code: true
+
+# 8.探索的解析
+  - title: "📊 データ解析 (plotly)"
+    function: "plotly_analysis"
+    category: "08.探索的解析"
+    description: "データ解析と可視化を行います。"
+    show_code: true
+
+# 9.評価指標
+  - title: "📊 回帰分析の評価指標"
+    category: "09.評価指標"
+    description: "回帰における評価指標の算出を行います。"
+    show_code: true
+
+  - title: "📊 分類の評価指標"
+    category: "09.評価指標"
+    description: "分類における評価指標の算出を行います。"
+    show_code: true
+
+# 10.機械学習
+  - title: "📊 線形回帰分析"
+    category: "10.機械学習"
+    description: "線形回帰を行います。"
+    show_code: true
+
+
+
+
