@@ -4,7 +4,7 @@ import streamlit as st
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 
-from common import stmolblock
+from logic import stmolblock
 
 
 def rdkit_smiles_search():
