@@ -10,3 +10,4 @@ stmol
 ipython_genutils
 pubchempy
 pyyaml
+watchdog

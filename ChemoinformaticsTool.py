@@ -13,6 +13,8 @@ st.set_page_config(page_title="Chemoinformatics Tool", layout="wide")
 # メインページタイトル
 st.title("Chemoinformatics Tool")
 
+st.warning('現在、このアプリは工事中のものが多いです。2025年夏頃にver1.0の完成を目指して改修中です。', icon="⚠️")
+
 st.write("このサイトは、ケモインフォマティクスの簡単なコードについて学ぶためのサイトです")
 
 # カテゴリー一覧を取得

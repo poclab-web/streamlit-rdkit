@@ -11,6 +11,7 @@ def handle_tabs_for_category(current_category):
     Parameters:
         current_category (str): 現在のカテゴリーキー。
     """
+
     # YAMLからアプリ定義をロード
     app_definitions = load_yaml("app_definitions.yaml")
 
@@ -32,7 +33,15 @@ def handle_tabs_for_category(current_category):
     ]
 
     with st.expander(f"📜 {current_category}の内容一覧"):
-        st.write(apps)
+        for app in apps:
+            st.markdown(f"""
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin-bottom: 10px;">
+                <h3 style="margin: 0;">{app['title']}</h3>
+                <p style="margin: 0;">{app['description']}</p>
+                <p style="margin: 0; font-size: 90%; color: gray;">Function: {app.get('function', '未定義')}</p>
+                {"<code style='color: red;'>コード表示可</code>" if app.get('show_code') else ""}
+            </div>
+            """, unsafe_allow_html=True)
 
     if not apps:
         st.warning("このカテゴリーにはアプリが登録されていません。")

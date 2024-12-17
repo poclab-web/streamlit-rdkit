@@ -4,9 +4,11 @@ from utils.sidebar import display_sidebar
 
 import py3Dmol
 from streamlit_ketcher import st_ketcher
-from logic.stmolblock import makeblock, render_mol
+import pandas as pd
 
+from logic.stmolblock import makeblock, render_mol
 from logic.pubchem_logic import fetch_pubchem_data
+from logic.rdkit_draw_logic import smiles_to_data
 
 # 現在のカテゴリー（手動設定）
 current_category = "ChemInfo"  # 正しいカテゴリーキーを指定
@@ -54,6 +56,52 @@ def pubchem_search():
                 st.code("\n".join(map(str, data.tolist())))
         except Exception as e:
             st.error(f"エラーが発生しました: {e}")
+
+def smiles_to_data_display():
+    # Streamlit アプリ
+    st.title("🔬 SMILESから構造と分子特性を表示")
+
+    # ユーザー入力
+    smiles_input = st.text_area("SMILESを貼り付けてください（複数行）", height=200)
+    if st.button("解析"):
+        # 入力を処理
+        smiles_list = [line.strip() for line in smiles_input.splitlines() if line.strip()]
+        if smiles_list:
+            st.info(f"{len(smiles_list)} 件のSMILESを解析しています。")
+            # データを生成
+            data = smiles_to_data(smiles_list)
+
+            # ヘッダー行を表示
+            st.write("### 結果一覧")
+            header_cols = st.columns([1, 2, 3, 2, 2])
+            header_cols[0].write("**#**")
+            header_cols[1].write("**SMILES**")
+            header_cols[2].write("**構造**")
+            header_cols[3].write("**分子量**")
+            header_cols[4].write("**molLogP**")
+
+            # データをテーブル形式で表示
+            for index, entry in enumerate(data, start=1):  # 1から始まるインデックス
+                col1, col2, col3, col4, col5 = st.columns([1, 2, 3, 2, 2])
+                col1.write(f"#{index}")  # インデックス番号を表示
+                col2.write(entry["SMILES"])
+                if isinstance(entry["構造"], str):
+                    col3.write(entry["構造"])  # 無効な場合はエラーメッセージ
+                else:
+                    col3.image(entry["構造"])  # 構造画像を表示
+                col4.write(f"{entry['分子量']:.2f}" if isinstance(entry["分子量"], float) else entry["分子量"])
+                col5.write(f"{entry['molLogP']:.2f}" if isinstance(entry["molLogP"], float) else entry["molLogP"])
+
+            # CSVデータのダウンロード機能
+            st.write("### データをダウンロード")
+            df = pd.DataFrame(
+                [{"SMILES": d["SMILES"], "MolWt": d["分子量"], "molLogP": d["molLogP"]} for d in data]
+            )
+            csv = df.to_csv(index=False).encode("utf-8")
+            st.download_button("📥 CSVをダウンロード", data=csv, file_name="smiles_analysis.csv", mime="text/csv")
+        else:
+            st.warning("有効なSMILESを入力してください。")
+
 
 if __name__ == "__main__":
     # ページ共通のタブ処理
