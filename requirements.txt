@@ -11,3 +11,5 @@ ipython_genutils
 pubchempy
 pyyaml
 watchdog
+seaborn
+openpyxl

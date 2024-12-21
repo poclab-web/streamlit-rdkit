@@ -110,21 +110,20 @@ apps:
 
 # 4.化学数値 ChemicalNumericalValues
   - title: "データの型を判定"
-    # function: 
+    function: "pages.04_ChemicalNumericalValues.display_load_data"
     category: "ChemicalNumericalValues"
     description: "データの中の情報を区分(名義尺度, 順序尺度, 間隔尺度, 比例尺度)します"
     show_code: true
-    # logic_functions:
+    logic_functions: logic.load_data.display_load_data
 
 # ワインデータセットで見てみる。
 
 # 構造と関連づけられる情報
-
 # 構造と紐づけられて、予測したい実験値のカテゴリーの例
 # 連続値 (融点、溶解度、logPの値)
-# 連続値のベクトルやスペクトル
+# 連続値のベクトルやスペクトル(NMR)
 # 離散値 (活性のある、なし)
-# 連続値 (選択性)
+# 連続値 (立体選択性)
 
 # 5.記述子 05_Descriptors
   - title: "📝 RDKit Fragmentsの内容"
@@ -216,6 +215,10 @@ apps:
 
 
 # 9.評価指標 EvaluationMetrics
+
+# データの分割方法について書く。
+
+# 評価指標
   - title: "📊 回帰分析の評価指標"
     # function: 
     category: "EvaluationMetrics"
@@ -230,7 +233,7 @@ apps:
     show_code: true
     # logic_functions:
 
-# データの分割方法
+
 
 # 10.機械学習 MachineLearning
   - title: "📊 線形回帰"
@@ -282,6 +285,9 @@ apps:
     description: "SHAPを用いてモデルの解釈性を向上させます。"
     show_code: true
 
+# PCA, tsne, umapなどの可視化
+
+# 教師なし学習の可視化
   - title: "📊 ADの結果を表示"
     # function: 
     category: "Interpretability"
@@ -289,19 +295,19 @@ apps:
     show_code: true
 
 # 12.難易度 DifficultyAdjustment
-  - title: "📊 ランダムフォレストで融点予測"
+  - title: "📊 融点予測"
     # function: 
     category: "DifficultyAdjustment"
     description: "融点の予測を行います。"
     show_code: true
 
-  - title: "📊 ランダムフォレストで溶解度予測"
+  - title: "📊 溶解度予測"
     # function: 
     category: "DifficultyAdjustment"
     description: "溶解度の予測を行います。"
     show_code: true
 
-  - title: "📊 ランダムフォレストでlogP予測"
+  - title: "📊 logP予測"
     # function: 
     category: "DifficultyAdjustment"
     description: "logPの予測を行います。"
@@ -312,6 +318,12 @@ apps:
     # function: 
     category: "ReverseAnalysis"
     description: "予測モデルを組み合わせて構造を出力します。"
+    show_code: true
+
+  - title: "📊 NMRの予測"
+    # function: 
+    category: "ReverseAnalysis"
+    description: "NMRの予測モデル"
     show_code: true
 
 # 14.化学空間 ChemicalSpace
@@ -325,7 +337,7 @@ apps:
   - title: "📊 記述子を用いた内挿外挿の検討"
     # function: 
     category: "InterpolationExtrapolation"
-    description: "記述子を変えながら内挿や外挿を検討します。"
+    description: "記述子を変えながら内挿や外挿を検討した結果。"
     show_code: true
 
 # 16.論文検索 LiteratureSearch
