@@ -29,23 +29,28 @@ def fetch_pubchem_data(compound_name="acetone"):
     
     """
     try:
-        # PubChemからデータを取得
+        # PubChemからデータをデータフレームで取得
         df = pcp.get_compounds(compound_name, 'name', as_dataframe=True)
 
         # データが存在するかを確認
         if df.empty:
             raise ValueError("該当するデータがありません。")
 
-        # 必要なデータを抽出
-        canonical_smiles = df.at[df.index.values[0], "canonical_smiles"]
+        # 必要なデータだけを抽出
         cid = df.index.values[0]
+        canonical_smiles = df.at[df.index.values[0], "canonical_smiles"]
+        inchi = df.at[df.index.values[0], "inchi"]
+        inchikey = df.at[df.index.values[0], "inchikey"]
 
         return {
-            "canonical_smiles": canonical_smiles,
             "cid": cid,
+            "canonical_smiles": canonical_smiles,
+            "inchi": inchi,
+            "inchikey": inchikey,
             "data_frame": df
         }
     except ValueError as ve:
         raise ve
     except Exception as e:
         raise Exception(f"PubChemデータ取得中にエラーが発生しました: {e}")
+

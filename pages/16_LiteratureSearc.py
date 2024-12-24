@@ -9,7 +9,7 @@ from utils.sidebar import display_sidebar
 
 if __name__ == "__main__":
     # 現在のカテゴリー（手動設定）
-    current_category = "LiteratureSearc"  # 正しいカテゴリーキーを指定
+    current_category = "LiteratureSearch"  # 正しいカテゴリーキーを指定
     st.write(f"現在のカテゴリー: {current_category}")  # デバッグ用
 
     # ページ共通のタブ処理

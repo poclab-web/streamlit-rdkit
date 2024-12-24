@@ -8,7 +8,7 @@ import pandas as pd
 
 from logic.stmolblock import makeblock, render_mol
 from logic.pubchem_logic import fetch_pubchem_data
-from logic.rdkit_draw_logic import smiles_to_data
+from logic.rdkit_draw_logic import smiles_to_data, draw_molecule_2d
 
 # 現在のカテゴリー（手動設定）
 current_category = "ChemInfo"  # 正しいカテゴリーキーを指定
@@ -28,11 +28,16 @@ def get_smiles():
     st.write("入力されたSMILES:")
     st.code(smiles)
 
+    st.markdown("### 2D Structure")
+    img = draw_molecule_2d(smiles)
+    st.image(img)
+
     try:
         # SMILESから分子構造を生成してレンダリング
         blk = makeblock(smiles)
+        st.markdown("### 3D Structure")
         render_mol(blk)
-        st.code(smiles)
+        st.markdown("### SDF(Structure-Data File)")
         st.code(blk)
 
     except Exception as e:
@@ -47,13 +52,35 @@ def pubchem_search():
     if st.button("検索"):
         try:
             results = fetch_pubchem_data(compound_name)
-            st.markdown("### canonical_smiles")
-            st.code(results["canonical_smiles"])
             st.markdown("### CID number")
             st.code(results["cid"])
-            for index, data in results["data_frame"].items():
-                st.markdown(f"#### {index}")
-                st.code("\n".join(map(str, data.tolist())))
+            st.markdown("### canonical_smiles")
+            st.code(results["canonical_smiles"])
+            st.markdown("### inchi")
+            st.code(results["inchi"])
+            st.markdown("### inchikey")
+            st.code(results["inchikey"])
+
+            try:
+                st.markdown("### 2D Structure")
+                img = draw_molecule_2d(results["canonical_smiles"])
+                st.image(img)
+                # SMILESから分子構造を生成してレンダリング
+                st.markdown("### 3D Structure")
+                blk = makeblock(results["canonical_smiles"])
+                render_mol(blk)
+                st.markdown("### SDF(Structure-Data File)")
+                st.code(blk)
+
+            except Exception as e:
+                # ユーザー向けエラーメッセージ
+                st.error("3次元構造の描画中にエラーが発生しました。構造が正しいか確認してください。")
+                st.error(f"エラー内容: {e}")
+
+            with st.expander(f"📜 {compound_name}のpubchempyで取得できる内容一覧"):
+                for index, data in results["data_frame"].items():
+                    st.markdown(f"#### {index}")
+                    st.code("\n".join(map(str, data.tolist())))
         except Exception as e:
             st.error(f"エラーが発生しました: {e}")
 

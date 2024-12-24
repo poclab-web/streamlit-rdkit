@@ -93,18 +93,12 @@ apps:
 
 
 # 03.整理情報 DataOrganization
-  - title: "3.1 脱塩処理"
-    # function: 
+  - title: "3.1 脱塩及び立体処理"
+    function: pages.03_DataOrganization.molecule_analyzer_display
     category: "DataOrganization"
     description: "分子の脱塩処理を行います"
-    show_code: false
-    # logic_functions:
-  - title: "3.2 脱立体処理"
-    # function: 
-    category: "DataOrganization"
-    description: "分子の脱立体処理を行います"
-    show_code: false
-    # logic_functions:
+    show_code: true
+    logic_functions: logic.rdkit_salt_stereo_analyzer.MoleculeAnalyzer
 
 # 不斉点のあるなし判定
 
