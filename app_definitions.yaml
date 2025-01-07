@@ -210,15 +210,18 @@ apps:
 
 # 9.評価指標 EvaluationMetrics
 
+
+
 # データの分割方法について書く。
 
 # 評価指標
   - title: "📊 回帰分析の評価指標"
-    # function: 
+    function: pages.09_EvaluationMetrics.display_regression_metrix
     category: "EvaluationMetrics"
     description: "回帰における評価指標の算出を行います。"
     show_code: true
-    # logic_functions:
+    logic_functions: logic.metrics.calculate_regression_metrics
+    logic_functions: logic.metrics.create_yyplot
 
   - title: "📊 分類の評価指標"
     # function: 
