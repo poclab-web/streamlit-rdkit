@@ -1,16 +1,22 @@
-import random
-
-import pandas as pd
 import streamlit as st
+from utils.tab_handler import handle_tabs_for_category
+from utils.sidebar import display_sidebar
+
+import random
+import pandas as pd
 
 from rdkit import Chem
 from rdkit.Chem import Draw
 
+# アプリの定義
+
+
+## 部分構造検索
 @st.cache_data
 def convert_df(df):
    return df.to_csv().encode('utf-8')
 
-def rdkit_smarts_search():
+def smarts_search_display():
     st.title('RDKit + Py3DMOL 😀')
 
     # smartsを入力
@@ -64,3 +70,16 @@ def rdkit_smarts_search():
         )
     else:
         st.write('Please Click Start Download button!')
+
+
+
+if __name__ == "__main__":
+    # 現在のカテゴリー（手動設定）
+    current_category = "StructureSearch"  # 正しいカテゴリーキーを指定
+    st.write(f"現在のカテゴリー: {current_category}")  # デバッグ用
+
+    # ページ共通のタブ処理
+    handle_tabs_for_category(current_category)
+
+    # サイドバーを表示
+    display_sidebar()

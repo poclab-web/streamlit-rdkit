@@ -13,8 +13,9 @@ from main_pages.DescriptorsDescription import rdkit_descriptor_description
 from main_pages.DescriptorsDescription_fragments import rdkit_fr_descriptor_description
 from main_pages.GasteigerCharge import rdkit_charge_analysis
 from main_pages.sascore import rdkit_sascore_analysis
-from main_pages.FingerPrint import morgan_fingerprint, rdkit_fingerprint
+from logic.FingerPrint import morgan_fingerprint, rdkit_fingerprint
 from main_pages.SmartsSearch import rdkit_smarts_search
+from main_pages.Draw2DStructure import Draw2DStructure
 
 # YAMLファイルのロード
 with open("app_definitions.yaml", "r") as file:
