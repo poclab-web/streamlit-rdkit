@@ -2,8 +2,12 @@ import streamlit as st
 from utils.tab_handler import handle_tabs_for_category
 from utils.sidebar import display_sidebar
 
+import time
+import concurrent.futures
+
 from logic.rdkit_draw_logic import draw_molecule_2d
 from logic.molecularconverter import MoleculeConverter
+from logic.api import ChemicalSearchApp
 
 from rdkit.Chem import Draw
 from rdkit import Chem
@@ -16,18 +20,81 @@ import matplotlib.pyplot as plt
 # アプリの関数定義
 
 # smilesから出力される情報を表示
-def Draw2DStructure():
-    st.markdown("SMILESを入力すると、分子の2D構造が描画されます。")
 
-    # SMILES入力
-    smiles = st.text_input("SMILESを入力してください", value="CCO", key="smiles_input") # デフォルトはエタノール
+def DisplayChemicalSearch():
+    st.title("Chemical Information Search App")
+    st.markdown("""
+    This application allows you to search for chemical information using:
+    - **SMILES**
+    - **InChIKey**
+    - **Chemical Name**
+    """)
 
-    if st.button("構造を描画"):
-        try:
-            img = draw_molecule_2d(smiles)
-            st.image(img, caption="2D構造", use_container_width=True)
-        except Exception as e:
-            st.error(f"エラーが発生しました: {e}")
+    # Add a table to show API compatibility with descriptions
+    st.subheader("API Compatibility Table")
+    compatibility_data = {
+        "API": ["PubChem", "ZINC Database", "ChEMBL", "Wikipedia", "ChEBI", "NCI Resolver"],
+        "Description": [
+            "Comprehensive database for chemical compounds and properties.",
+            "Database for purchasable compounds and screening libraries.",
+            "Database for bioactive molecules and drug discovery.",
+            "General chemical compounds and their properties.",
+            "Focuses on biologically relevant chemical entities.",
+            "Chemical structure resolver with multiple input formats."
+        ],
+        "SMILES": ["✅ Supported", "✅ Supported", "✅ Supported", "❌ Not Supported", "✅ Supported", "✅ Supported"],
+        "InChIKey": ["✅ Supported", "❌ Not Supported", "✅ Supported", "❌ Not Supported", "❌ Not Supported", "✅ Supported"],
+        "Name": ["✅ Supported", "✅ Supported", "✅ Supported", "✅ Supported", "✅ Supported", "✅ Supported"],
+        "Estimated Compounds": [
+            110_000_000,   # PubChem
+            50_000_000,    # ZINC Database (revised for purchasable compounds)
+            2_000_000,     # ChEMBL
+            150_000,       # Wikipedia (Category: "Chemical compounds")
+            65_000,        # ChEBI
+            "unknown"      # NCI Resolver (Unknown)
+        ]
+    }
+    compatibility_df = pd.DataFrame(compatibility_data)
+    st.table(compatibility_df)
+
+    # Default values for SMILES, InChIKey, and Name
+    default_values = {
+        "SMILES": "CCO",  # Ethanol
+        "InChIKey": "LFQSCWFLJHTTHZ-UHFFFAOYSA-N",  # Ethanol InChIKey
+        "Name": "ethanol"  # Ethanol common name
+    }
+
+    # User input for query type and query
+    query_type = st.selectbox("Select the type of input:", ["SMILES", "InChIKey", "Name"])
+    query_input = st.text_input(f"Enter a {query_type}:", value=default_values.get(query_type, ""))
+
+    # User input for timeout duration
+    timeout = st.slider("Set the timeout duration (seconds):", min_value=1, max_value=30, value=3)
+
+    if st.button("Search"):
+        if query_input:
+            # Create instance of ChemicalSearchApp
+            app = ChemicalSearchApp(query_input, query_type, timeout=timeout)
+
+            # Fetch data from all APIs
+            st.subheader("Results")
+            with st.spinner("Fetching data from APIs..."):
+                # Fetch data in the fixed order
+                api_order = ["PubChem", "ZINC Database", "ChEMBL", "Wikipedia", "ChEBI", "NCI Resolver"]
+                all_results = app.get_all_dataframes()
+
+                # Display results in the fixed order
+                for api_name in api_order:
+                    df = all_results.get(api_name, pd.DataFrame([{"Error": "No data available"}]))
+                    st.subheader(f"{api_name} Results")
+                    if not df.empty and "Error" in df.columns:
+                        st.error(df.iloc[0]["Error"])
+                    elif not df.empty:
+                        st.dataframe(df)
+                    else:
+                        st.warning(f"No data returned from {api_name}.")
+        else:
+            st.warning(f"Please enter a valid {query_type}.")
 
 # 2次元情報について表示
 def display_adjacency_matrix ():

@@ -13,3 +13,4 @@ pyyaml
 watchdog
 seaborn
 openpyxl
+requests

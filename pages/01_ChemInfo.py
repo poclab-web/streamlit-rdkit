@@ -5,6 +5,7 @@ from utils.sidebar import display_sidebar
 import py3Dmol
 from streamlit_ketcher import st_ketcher
 import pandas as pd
+from rdkit import Chem
 
 from logic.stmolblock import makeblock, render_mol
 from logic.pubchem_logic import fetch_pubchem_data
@@ -28,23 +29,36 @@ def get_smiles():
     st.write("入力されたSMILES:")
     st.code(smiles)
 
-    st.markdown("### 2D Structure")
-    img = draw_molecule_2d(smiles)
-    st.image(img)
+    try: 
+        mol = Chem.MolFromSmiles(smiles)
 
-    try:
-        # SMILESから分子構造を生成してレンダリング
-        blk = makeblock(smiles)
-        st.markdown("### 3D Structure")
-        render_mol(blk)
+        st.write("InChi")
+        st.code(Chem.MolToInchi(mol))
+
+        st.write("InChiKey")
+        st.code(Chem.MolToInchiKey(mol))
+
+        col1, col2 = st.columns(2)
+
+        # Display 2D structure in the first column
+        with col1:
+            st.markdown("### 2D Structure")
+            img = draw_molecule_2d(smiles)
+            st.image(img)
+
+        # Display 3D structure in the second column
+        with col2:
+            # SMILESから分子構造を生成してレンダリング
+            blk = makeblock(smiles)
+            st.markdown("### 3D Structure")
+            render_mol(blk)
+        
         st.markdown("### SDF(Structure-Data File)")
         st.code(blk)
 
     except Exception as e:
-        # ユーザー向けエラーメッセージ
-        st.error("3次元構造の描画中にエラーが発生しました。構造が正しいか確認してください。")
-        st.error(f"エラー内容: {e}")
-        
+        st.warning(f"Unable to generate structure: {e}")
+
 
 def pubchem_search():
     """PubChem APIを使った単分子分析アプリ。"""
@@ -88,8 +102,11 @@ def smiles_to_data_display():
     # Streamlit アプリ
     st.title("🔬 SMILESから構造と分子特性を表示")
 
+    # プレースホルダーに例を設定
+    example_smiles = "CCO\nCC(=O)O\nC1=CC=CC=C1"
+
     # ユーザー入力
-    smiles_input = st.text_area("SMILESを貼り付けてください（複数行）", height=200)
+    smiles_input = st.text_area("SMILESを貼り付けてください（複数行）", height=200, value=example_smiles)
     if st.button("解析"):
         # 入力を処理
         smiles_list = [line.strip() for line in smiles_input.splitlines() if line.strip()]

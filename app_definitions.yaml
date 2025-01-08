@@ -71,12 +71,12 @@ apps:
     logic_functions: "logic.rdkit_draw_logic.smiles_to_data"
 
 # 02.構造表現 StructureRepresentation
-  - title: "🔷 2.1 構造の2D描画"
-    function: "pages.02_StructureRepresentation.Draw2DStructure"
+  - title: "🔷 2.1 Smilesからの検索"
+    function: "pages.02_StructureRepresentation.DisplayChemicalSearch"
     category: "StructureRepresentation"
-    description: "分子構造を2D形式で描画します。"
+    description: "SMILESから各種データベースにアクセスした結果を表示します"
     show_code: true
-    logic_functions: "logic.rdkit_logic.smiles_to_data"
+    logic_functions: "logic.api.ChemicalSearchApp"
 
   - title: "🔷 2.2 隣接行列など2次元の構造接続情報の表示"
     function: "pages.02_StructureRepresentation.display_adjacency_matrix"

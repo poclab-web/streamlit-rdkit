@@ -166,3 +166,6 @@ cython_debug/
 .streamlit
 .data
 .devcontainer
+
+output.sdf
+sample.png
