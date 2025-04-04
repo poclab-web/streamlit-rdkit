@@ -1,7 +1,6 @@
 import pandas as pd
 from rdkit import Chem
-from rdkit.Chem import PandasTools, SaltRemover
-import streamlit as st
+from rdkit.Chem import PandasTools, SaltRemover, rdMolDescriptors
 
 import tempfile
 
@@ -106,3 +105,50 @@ class MoleculeAnalyzer:
                 "HasSalt": None,
                 "HasUndefinedStereo": None
             }]
+
+
+
+def analyze_chirality(smiles):
+    """
+    分子の不斉点を判定し、不斉点があるのに立体表記がない原子を特定。
+    さらに、不斉点における置換基の種類とCIP則における順番を表示。
+    """
+    mol = Chem.MolFromSmiles(smiles)
+    if not mol:
+        return None, "Invalid SMILES", None
+    
+    # 不斉点の取得
+    chiral_centers = Chem.FindMolChiralCenters(mol, includeUnassigned=True)
+    unassigned = [
+        (center, label) for center, label in chiral_centers if label == "?"
+    ]
+    
+    # 不斉点の詳細解析
+    chiral_details = []
+    for center_idx, label in chiral_centers:
+        atom = mol.GetAtomWithIdx(center_idx)
+        neighbors = [nbr.GetIdx() for nbr in atom.GetNeighbors()]
+        neighbor_details = []
+        
+        for nbr_idx in neighbors:
+            neighbor_atom = mol.GetAtomWithIdx(nbr_idx)
+            neighbor_symbol = neighbor_atom.GetSymbol()
+            neighbor_mass = neighbor_atom.GetMass()
+            neighbor_details.append((nbr_idx, neighbor_symbol, neighbor_mass))
+        
+        # CIP順位付けの取得
+        if atom.HasProp('_CIPCode'):
+            cip_code = atom.GetProp('_CIPCode')
+        else:
+            cip_code = "Unassigned"
+        
+        chiral_details.append({
+            "center_idx": center_idx,
+            "label": label,
+            "cip_code": cip_code,
+            "substituents": sorted(
+                neighbor_details, key=lambda x: x[2], reverse=True
+            )  # 質量で暫定的にソート
+        })
+    
+    return mol, chiral_centers, unassigned, chiral_details

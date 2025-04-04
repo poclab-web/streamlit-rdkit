@@ -1,0 +1,41 @@
+metadata:
+  Sigma-Aldrich:
+    PubChem Source URL: https://pubchem.ncbi.nlm.nih.gov/source/Sigma-Aldrich
+    Organization: Sigma-Aldrich
+    Category: Chemical Vendors
+    URL: https://www.sigmaaldrich.com/
+    Contact Name: Rachelle Wilson
+    Address: 3050 Spruce St., Saint Louis, MO, United States, 63103
+    Data Source ID: Sigma-Aldrich
+    Data in PubChem: 278,868 Live Substances
+    Last Updated: 2025/01/08
+  ChemFish:
+    PubChem Source URL: https://pubchem.ncbi.nlm.nih.gov/source/20870
+    Organization: ChemFish Tokyo Co., Ltd.
+    Category: Chemical Vendors
+    URL: http://en.chemfish.co.jp/
+    Contact Name: Itou Youko
+    Address: Senzoku, Taito-ku, Tokyo, Kiitos Building 305, Japan, 1110031
+    Data Source ID: 20870
+    Data in PubChem: 8,479 Live Substances
+    Last Updated: 2023/01/31
+  TCI:
+    PubChem Source URL: https://pubchem.ncbi.nlm.nih.gov/source/TCI%20(Tokyo%20Chemical%20Industry)
+    Organization: TCI America
+    Category: Chemical Vendors
+    URL: https://www.tcichemicals.com/US/en
+    Contact Name: TCI Staff
+    Address: 8F T-PLUS Nihonbashi-kodemmacho, 16-12 Nihonbashi-kodemmacho, Chuo-ku, Tokyo, Japan, 103-0001
+    Data Source ID: TCI (Tokyo Chemical Industry)
+    Data in PubChem: 31,128 Live Substances
+    Last Updated: 2023/10/18
+  WatanabeChemical:
+    PubChem Source URL: https://pubchem.ncbi.nlm.nih.gov/source/23450
+    Organization: Watanabe Chemical Industries, Ltd.
+    Category: Chemical Vendors
+    URL: https://www.watanabechem.co.jp/en/
+    Contact Name: Takahiro Uzu
+    Address: 2-2-5 Sakaimachi, Naka-ku, Hiroshima, Japan, 730-0853
+    Data Source ID: 23450
+    Data in PubChem: 2,448 Live Substances
+    Last Updated: 2024/12/02

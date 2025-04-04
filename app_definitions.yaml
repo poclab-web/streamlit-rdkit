@@ -99,25 +99,37 @@ apps:
     description: "分子の脱塩処理を行います"
     show_code: true
     logic_functions: logic.rdkit_salt_stereo_analyzer.MoleculeAnalyzer
+  - title: "3.2 立体判定"
+    function: pages.03_DataOrganization.checkStereocenters
+    category: "DataOrganization"
+    description: "分子の立体をチェックします"
+    show_code: true
+    logic_functions: logic.rdkit_salt_stereo_analyzer.analyze_chirality
+  - title: "3.3 反応解析"
+    function: pages.03_DataOrganization.reaction_analyzer_display
+    category: "DataOrganization"
+    description: "反応を解析します"
+    show_code: true
+    logic_functions: logic.chem_reactions.ReactionSmilesParser
 
-# 不斉点のあるなし判定
 
 # 4.化学数値 ChemicalNumericalValues
-  - title: "データの型を判定"
+  #一般データの表示
+  - title: "4.1 データの型を判定"
     function: "pages.04_ChemicalNumericalValues.display_load_data"
     category: "ChemicalNumericalValues"
     description: "データの中の情報を区分(名義尺度, 順序尺度, 間隔尺度, 比例尺度)します"
     show_code: true
     logic_functions: logic.load_data.display_load_data
 
-# ワインデータセットで見てみる。
+# 化学データの表示
+  - title: "4.2 データの型を判定"
+    function: "pages.04_ChemicalNumericalValues.dataset_viewer"
+    category: "ChemicalNumericalValues"
+    description: "物性値のデータを確認"
+    show_code: true
+    logic_functions: logic.mol_loader.MoleculeDataLoader
 
-# 構造と関連づけられる情報
-# 構造と紐づけられて、予測したい実験値のカテゴリーの例
-# 連続値 (融点、溶解度、logPの値)
-# 連続値のベクトルやスペクトル(NMR)
-# 離散値 (活性のある、なし)
-# 連続値 (立体選択性)
 
 # 5.記述子 05_Descriptors
   - title: "📝 RDKit Fragmentsの内容"
@@ -180,10 +192,23 @@ apps:
     show_code: true
     # logic_functions:
 
+  - title: "🔋 make 3D"
+    function: "pages.06_ComputationalChemistry.visualize_smiles_to_3d_with_make3D"
+    category: "ComputationalChemistry"
+    description: "分子のGasteiger部分電荷を解析します。"
+    show_code: true
+    logic_functions: logic.openbabel_utils.smiles_to_3d_with_make3D
+
 # 構造の自動探索と出力(分子力場)
 
 # 7.構造検索 pages.07_StructureSearch
 # 完全一致検索
+  - title: "⭐️完全一致検索"
+    function: "pages.07_StructureSearch.search_exact_match_display"
+    category: "StructureSearch"
+    description: "SMARTSパターンを用いた構造検索を行います。"
+    show_code: true
+    # logic_functions:
 
 # 部分一致検索
   - title: "⭐️SMARTS検索(TCI Compounds)"
@@ -206,12 +231,14 @@ apps:
     # logic_functions:
 
 # フィルター法による記述子の削減
-
+  - title: "📊 フィルター法"
+    # function: 
+    category: "ExploratoryAnalysis"
+    description: "フィルター法により指標を削減します"
+    show_code: true
+    # logic_functions:
 
 # 9.評価指標 EvaluationMetrics
-
-
-
 # データの分割方法について書く。
 
 # 評価指標
@@ -229,7 +256,6 @@ apps:
     description: "分類における評価指標の算出を行います。"
     show_code: true
     # logic_functions:
-
 
 
 # 10.機械学習 MachineLearning
@@ -323,6 +349,8 @@ apps:
     description: "NMRの予測モデル"
     show_code: true
 
+
+
 # 14.化学空間 ChemicalSpace
   - title: "📊 異なる化学空間の比較"
     # function: 
@@ -330,12 +358,14 @@ apps:
     description: "化学空間が異なるものを比較し、図示します。"
     show_code: true
 
+
 # 15.内挿外挿 InterpolationExtrapolation
   - title: "📊 記述子を用いた内挿外挿の検討"
     # function: 
     category: "InterpolationExtrapolation"
     description: "記述子を変えながら内挿や外挿を検討した結果。"
     show_code: true
+
 
 # 16.論文検索 LiteratureSearch
   - title: "📊 リンク集"
