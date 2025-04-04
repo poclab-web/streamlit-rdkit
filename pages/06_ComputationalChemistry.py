@@ -2,7 +2,8 @@ import streamlit as st
 from utils.tab_handler import handle_tabs_for_category
 from utils.sidebar import display_sidebar
 
-
+from logic.openbabel_utils import smiles_to_3d_with_make3D
+from logic.stmolblock import makeblock, render_mol
 
 # アプリの定義
 
@@ -37,6 +38,24 @@ def gasteiger_charge_desplay():
     image = Image.open('sample.png')
     st.image(image, use_container_width=True)
 
+def visualize_smiles_to_3d_with_make3D():
+    # Streamlitアプリケーション
+    st.title("SMILESから3次元構造を生成・可視化")
+
+    # ユーザー入力
+    smiles = st.text_input("SMILESを入力してください", "CCO")  # デフォルトでエタノール
+
+    if st.button("3D構造を生成"):
+        with st.spinner("3D構造を生成しています..."):
+            # SMILESから3次元構造を生成
+            mol_3d = smiles_to_3d_with_make3D(smiles)
+            if "Error" in mol_3d or not mol_3d.strip():
+                st.error("無効なSMILES形式です。再度入力してください。")
+            else:
+                render_mol(mol_3d)
+                st.code(mol_3d)
+    else:
+        st.write("SMILES形式を入力し、ボタンを押して分子の3次元構造を生成・可視化してください。")
 
 if __name__ == "__main__":
     # 現在のカテゴリー（手動設定）

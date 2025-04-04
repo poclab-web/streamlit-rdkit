@@ -9,6 +9,18 @@ import pandas as pd
 from logic.metrics import calculate_regression_metrics, create_yyplot
 from sklearn.datasets import load_diabetes
 
+def display_split():
+    """
+    テスト、検証、訓練の分割方法を解説する。
+    1. 表形式での表示
+    各データセット（訓練、検証、テスト）の統計情報（行数、クラス分布など）をst.tableやst.dataframeで表示します。
+    2. グラフでの可視化
+    データの分布やサイズ感を直感的に示すために、Streamlitのst.pyplotを用いて以下のようなグラフを表示できます：
+    棒グラフ: 各分割データのサイズを表示。
+    円グラフ: 全体に対する各分割データの割合を示す。    
+    """
+
+
 def display_regression_metrix():
     # ヘッダー
     st.title("📊 回帰評価指標計算ツール")

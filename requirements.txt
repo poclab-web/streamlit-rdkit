@@ -1,6 +1,5 @@
 streamlit
 matplotlib
-rdkit
 pandas
 numpy
 pycaret
@@ -13,3 +12,9 @@ pyyaml
 watchdog
 seaborn
 openpyxl
+requests
+molvs
+
+# rdkitのインストールをconda-forge経由で指定
+-f https://conda.anaconda.org/conda-forge
+rdkit
