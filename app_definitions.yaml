@@ -123,7 +123,7 @@ apps:
     logic_functions: logic.load_data.display_load_data
 
 # 化学データの表示
-  - title: "4.2 データの型を判定"
+  - title: "4.2 化学データの可視化"
     function: "pages.04_ChemicalNumericalValues.dataset_viewer"
     category: "ChemicalNumericalValues"
     description: "物性値のデータを確認"
@@ -132,52 +132,42 @@ apps:
 
 
 # 5.記述子 05_Descriptors
-  - title: "📝 RDKit Fragmentsの内容"
+  - title: "📝 1. RDKit Fragmentsの内容"
     function: "pages.05_Descriptors.rdkit_fr_descriptor_display"
     category: "Descriptors"
     description: "分子のフラグメント情報を出力します。"
     show_code: false
     # logic_functions:
  
-  - title: "☝️ morganfingerprint"
+  - title: "☝️ 2. morganfingerprint"
     function: "pages.05_Descriptors.morgan_fingerprint_display"
     category: "Descriptors"
     description: "Morgan指紋を計算し、分子構造の特徴を解析します。"
     show_code: true
     logic_functions: "logic.FingerPrint.morgan_fingerprint"
 
-  - title: "✌️ RDKit Fingerprint"
+  - title: "✌️ 3. RDKit Fingerprint"
     # function: "rdkit_fingerprint"
     category: "Descriptors"
     description: "分子のRDKitフィンガープリントを生成します。"
     show_code: true
     # logic_functions:
 
-  - title: "😀 RDKit Descriptor"
+  - title: "😀 3. RDKit Descriptor"
     # function: "rdkit_smiles_search"
     category: "Descriptors"
     description: "SMILESからRDKitで算出できる記述子を出力します。"
     show_code: true
     # logic_functions:
 
-  # - title: "📝 Descriptorの内容"
-  #   # function: "rdkit_descriptor_description"
-  #   category: "Descriptors"
-  #   description: "RDKitの化学記述子に関する情報を提供します。"
-  #   show_code: true
-  #   # logic_functions:
+  - title: "😀 4. Sterimol calculator"
+    # function: "rdkit_smiles_search"
+    category: "Descriptors"
+    description: "構造から置換基のSterimolの値を算出します。"
+    show_code: true
+    # logic_functions:
 
-  # - title: "📑複数分子分析(RDKit Descriptor)"
-  #   # function: "multi_rdkit_smiles_search"
-  #   category: "Descriptors"
-  #   description: "複数の分子記述子を一括計算します。"
-  #   show_code: true
-  #   # logic_functions:
-
-# sterimolの計算
-# comfaの計算
-
-  - title: "🧮 合成難易度 (sascore)"
+  - title: "🧮 5. 合成難易度 (sascore)"
     function: "pages.05_Descriptors.sascore_display"
     category: "Descriptors"
     description: "分子の合成難易度を評価します。"
@@ -195,7 +185,7 @@ apps:
   - title: "🔋 make 3D"
     function: "pages.06_ComputationalChemistry.visualize_smiles_to_3d_with_make3D"
     category: "ComputationalChemistry"
-    description: "分子のGasteiger部分電荷を解析します。"
+    description: "SMILESから、分子の3次元構造を出力します。"
     show_code: true
     logic_functions: logic.openbabel_utils.smiles_to_3d_with_make3D
 
@@ -218,9 +208,13 @@ apps:
     show_code: true
     # logic_functions:
 
-# 類似性検索(fingerprint, tanimoto similarity)
-# 類似性検索(descriptorで検索)
-# 類似性検索(レーベンシュタイン距離)
+# 類似性検索
+  - title: "類似性検索"
+    function: "pages.07_StructureSearch.similarity_search_display"
+    category: "StructureSearch"
+    description: "tanimoto, descriptor, レーベンシュタイン距離で比較します。"
+    show_code: true
+    # logic_functions:
 
 # 8.探索的解析 pages.08_ExploratoryAnalysis
   - title: "📊 データ解析 (plotly)"
@@ -240,6 +234,12 @@ apps:
 
 # 9.評価指標 EvaluationMetrics
 # データの分割方法について書く。
+  - title: "📊 データの分割"
+    # function: 
+    category: "EvaluationMetrics"
+    description: "データの分割を行います。ホールドアウト、交差検証による分割を行う"
+    show_code: true
+    # logic_functions:
 
 # 評価指標
   - title: "📊 回帰分析の評価指標"
@@ -302,19 +302,22 @@ apps:
     # logic_functions:
 
 # 11.解釈性 Interpretability
-  - title: "📊 SHAPの結果を表示"
+  - title: "📊 1. データ分布の可視化"
     # function: 
     category: "Interpretability"
-    description: "SHAPを用いてモデルの解釈性を向上させます。"
+    description: "PCA, tsne, UMAPを用いてデータを可視化します。"
     show_code: true
 
-# PCA, tsne, umapなどの可視化
-
-# 教師なし学習の可視化
-  - title: "📊 ADの結果を表示"
+  - title: "📊 2. ADの結果を表示"
     # function: 
     category: "Interpretability"
     description: "適用範囲(AD)の結果を表示します。"
+    show_code: true
+
+  - title: "📊 3.SHAPの結果を表示"
+    # function: 
+    category: "Interpretability"
+    description: "SHAPを用いてモデルの解釈性を向上させます。"
     show_code: true
 
 # 12.難易度 DifficultyAdjustment
@@ -337,10 +340,10 @@ apps:
     show_code: true
 
 # 13.逆解析 ReverseAnalysis
-  - title: "📊 組み合わせ予測による構造出力"
+  - title: "📊 IRの予測"
     # function: 
     category: "ReverseAnalysis"
-    description: "予測モデルを組み合わせて構造を出力します。"
+    description: "分子力場によるIRの予測"
     show_code: true
 
   - title: "📊 NMRの予測"
@@ -349,15 +352,18 @@ apps:
     description: "NMRの予測モデル"
     show_code: true
 
-
+  - title: "📊 組み合わせ予測による構造出力"
+    # function: 
+    category: "ReverseAnalysis"
+    description: "予測モデルを組み合わせて構造を出力します。"
+    show_code: true
 
 # 14.化学空間 ChemicalSpace
   - title: "📊 異なる化学空間の比較"
     # function: 
     category: "ChemicalSpace"
-    description: "化学空間が異なるものを比較し、図示します。"
+    description: "化学空間が異なるものをMQN, SMIfp, RDKit descriptor比較し、図示します。"
     show_code: true
-
 
 # 15.内挿外挿 InterpolationExtrapolation
   - title: "📊 記述子を用いた内挿外挿の検討"
@@ -366,10 +372,11 @@ apps:
     description: "記述子を変えながら内挿や外挿を検討した結果。"
     show_code: true
 
-
 # 16.論文検索 LiteratureSearch
-  - title: "📊 リンク集"
-    # function: 
+  - title: "📊 ChemRxiv"
+    function: pages.16_LiteratureSearc.chemrxiv_search_display
     category: "LiteratureSearch"
     description: "化学に関連する論文や情報のリンク集を提供します。"
-    show_code: false
+    show_code: true
+    logic_functions: logic.ChemRxiv_api.fetch_chemrxiv_data
+    # logic_functions: logic.ChemRxiv_api.parse_chemrxiv_data

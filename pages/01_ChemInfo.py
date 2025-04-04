@@ -36,7 +36,7 @@ def get_smiles():
         st.code(Chem.MolToInchi(mol))
 
         st.write("InChiKey")
-        st.code(Chem.MolToInchiKey(mol))
+        st.code(Chem.MolToInchiKey(mol))  # InChIKeyを表示
 
         col1, col2 = st.columns(2)
 
@@ -73,7 +73,7 @@ def pubchem_search():
             st.markdown("### inchi")
             st.code(results["inchi"])
             st.markdown("### inchikey")
-            st.code(results["inchikey"])
+            st.code(results["inchikey"])  # InChIKeyを表示
 
             try:
                 st.markdown("### 2D Structure")

@@ -1,6 +1,5 @@
 streamlit
 matplotlib
-rdkit
 pandas
 numpy
 pycaret
@@ -16,3 +15,7 @@ openpyxl
 requests
 openbabel
 molvs
+
+# rdkitのインストールをconda-forge経由で指定
+-f https://conda.anaconda.org/conda-forge
+rdkit
