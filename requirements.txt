@@ -13,7 +13,6 @@ watchdog
 seaborn
 openpyxl
 requests
-openbabel
 molvs
 
 # rdkitのインストールをconda-forge経由で指定
