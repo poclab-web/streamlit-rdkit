@@ -13,6 +13,7 @@ from logic import sascore
 
 # アプリの定義
 
+# 1. RDKit Fragmentsの内容
 def rdkit_fr_descriptor_display():
     st.title('RDKit Descriptor Fragments Description 😀')
     st.text("データとしてはTCIで購入可能な約30000分子を脱塩処理した後にDescriptorを取得しています")
@@ -42,6 +43,7 @@ def rdkit_fr_descriptor_display():
     img = Draw.MolsToGridImage(mols, molsPerRow=int(molsPerRow), legends = smiles_list, subImgSize = (400, 300))
     st.image(img)
 
+#  2. morganfingerprint
 def morgan_fingerprint_display():
     st.title('RDKit + MorganFingerPrint 😀')
 
@@ -73,6 +75,58 @@ def morgan_fingerprint_display():
     for bit, value in bitI_morgan.items():
         st.text(bit)
         st.text(value)
+
+# 3. RDKit Descriptor
+def rdkit_descriptor_display():
+    from rdkit.Chem import Draw, Descriptors
+
+    st.title('RDKit + Descriptors 😀')
+
+    # SMILES入力
+    smiles2 = st.text_input('SMILESを入力', 'CC(=O)C', key='descriptor_smiles')
+    st.text("SMILESを表示")
+    st.code(smiles2)
+
+    # 分子作成
+    mol2 = Chem.MolFromSmiles(smiles2)
+
+    if mol2:
+        # 分子構造の表示
+        st.text("分子構造を表示")
+        img2 = Draw.MolToImage(mol2)
+        st.image(img2)
+
+        # 分子記述子の計算と表示
+        st.text("RDKitで計算可能な分子のDescriptorを表示")
+
+        with st.expander("Descriptorの内容"):
+            st.title('RDKit Descriptor Description 😀')
+            df = pd.read_csv("data/descriptors_name.csv", encoding='shift_jis')
+            st.dataframe(df, 2000, 4000)
+
+        # Descriptorリストを取得
+        descriptor_list = [desc_name for desc_name, _ in Descriptors._descList]
+
+        # Descriptor値を保存するリスト
+        descriptor_values = []
+
+        # 各Descriptorを計算して保存
+        for descriptor in descriptor_list:
+            try:
+                value = getattr(Descriptors, descriptor)(mol2)
+                descriptor_values.append((descriptor, value))
+            except Exception as e:
+                descriptor_values.append((descriptor, f"Error: {e}"))
+
+        # pandas DataFrameにまとめる
+        df = pd.DataFrame(descriptor_values, columns=["Descriptor", "Value"])
+
+        # st.tableできれいに表示
+        st.text("分子のDescriptor一覧")
+        st.table(df)
+    else:
+        st.error("無効なSMILESが入力されました。正しいSMILESを入力してください。")
+
 
 def sascore_display():
     st.title('RDKit + sascore 😀')

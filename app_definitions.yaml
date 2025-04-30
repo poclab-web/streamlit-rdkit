@@ -146,15 +146,9 @@ apps:
     show_code: true
     logic_functions: "logic.FingerPrint.morgan_fingerprint"
 
-  - title: "✌️ 3. RDKit Fingerprint"
-    # function: "rdkit_fingerprint"
-    category: "Descriptors"
-    description: "分子のRDKitフィンガープリントを生成します。"
-    show_code: true
-    # logic_functions:
 
   - title: "😀 3. RDKit Descriptor"
-    # function: "rdkit_smiles_search"
+    function: "pages.05_Descriptors.rdkit_descriptor_display"
     category: "Descriptors"
     description: "SMILESからRDKitで算出できる記述子を出力します。"
     show_code: true
@@ -173,6 +167,13 @@ apps:
     description: "分子の合成難易度を評価します。"
     show_code: true
     logic_functions: "logic.sascore.calculateScore"
+
+  # - title: "✌️ RDKit Fingerprint"
+  #   # function: "rdkit_fingerprint"
+  #   category: "Descriptors"
+  #   description: "分子のRDKitフィンガープリントを生成します。"
+  #   show_code: true
+  #   # logic_functions:
 
 # 6.計算化学 06_ComputationalChemistry.py
   - title: "🔋 Charge Analysis"

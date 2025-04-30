@@ -14,6 +14,7 @@ seaborn
 openpyxl
 requests
 molvs
+openbabel-wheel
 
 # rdkitのインストールをconda-forge経由で指定
 -f https://conda.anaconda.org/conda-forge
