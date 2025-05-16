@@ -4,6 +4,7 @@ from utils.sidebar import display_sidebar
 
 from logic.openbabel_utils import smiles_to_3d_with_make3D
 from logic.stmolblock import makeblock, render_mol
+from rdkit.Chem.Draw import rdMolDraw2D
 
 # アプリの定義
 
@@ -31,12 +32,16 @@ def gasteiger_charge_desplay():
         atom.SetProp('atomNote', lbl)
 
     img2 = Draw.MolToImage(mol_with_charge)
-    st.image(img2, use_container_width=True)
+    st.image(img2)
 
-    fig = SimilarityMaps.GetSimilarityMapFromWeights(mol_with_charge, weights=atom_charges, colorMap='bwr', size=(300, 300))
-    fig.savefig('sample.png', bbox_inches='tight')
-    image = Image.open('sample.png')
-    st.image(image, use_container_width=True)
+    # 修正箇所: MolDraw2DCairo を使用して直接描画
+    drawer = rdMolDraw2D.MolDraw2DCairo(400, 400)  # 300x300 の画像サイズ
+    SimilarityMaps.GetSimilarityMapFromWeights(mol_with_charge, weights=atom_charges, colorMap='bwr', draw2d=drawer)
+    drawer.FinishDrawing()
+
+    # 描画結果をバイナリデータとして取得し、Streamlit に表示
+    img_data = drawer.GetDrawingText()
+    st.image(img_data)
 
 def visualize_smiles_to_3d_with_make3D():
     # Streamlitアプリケーション

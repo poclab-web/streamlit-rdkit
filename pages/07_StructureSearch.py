@@ -23,6 +23,8 @@ def convert_df(df):
 def search_exact_match_display():
     # Streamlitアプリ
     st.title("化合物データ検索アプリ")
+    
+    st.text("TCIで売られている化合物(数万個)の化合物を構造一致検索")
 
     data_file = 'data/Reagents/TCI_output_part1.csv'  # 修正済みのパス
     tci_data = pd.read_csv(data_file)
@@ -136,7 +138,7 @@ def smarts_search_display():
 def similarity_search_display():
     st.title('Similarity Search 😀')
 
-    data_file = 'data/Reagents/TCI_output_part1.csv'  # 修正済みのパス
+    data_file = 'data/Reagents/TCI_output_part1.csv'  
     tci_data = pd.read_csv(data_file)
     smiles_list = tci_data['SMILES'].tolist()
 
@@ -148,7 +150,7 @@ def similarity_search_display():
 
     # 類似性の計算方法を選択
     similarity_method = st.selectbox("類似性の計算方法を選択してください", 
-                                     ["Fingerprint", "Normalized Levenshtein", "Descriptor", "MCS"])
+                                     ["Tanimoto(ECFP radius2 2048bit)", "Normalized Levenshtein", "Descriptor", "MCS"])
 
     # 計算時間の閾値
     time_limit = st.slider("計算時間の閾値 (秒)", 1, 60, 10)
@@ -167,7 +169,7 @@ def similarity_search_display():
                 calculation_times.append((smiles, elapsed_time))
                 if elapsed_time > time_limit:
                     return None
-                if similarity_method == "Fingerprint" and similarity_scores["fingerprint_similarity"] >= threshold:
+                if similarity_method == "Tanimoto(ECFP radius2 2048bit)" and similarity_scores["fingerprint_similarity"] >= threshold:
                     return (smiles, similarity_scores, elapsed_time)
                 elif similarity_method == "Normalized Levenshtein" and similarity_scores["normalized_levenshtein_distance"] <= threshold:
                     return (smiles, similarity_scores, elapsed_time)
