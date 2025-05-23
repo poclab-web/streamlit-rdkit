@@ -1,8 +1,12 @@
 import streamlit as st
 from rdkit import Chem
 from rdkit.Chem import Draw
+
 from molvs import Standardizer
+from molvs.fragment import LargestFragmentChooser
+
 import pandas as pd
+
 
 # CSVファイルの読み込み
 def load_tci_data(file_path):
@@ -22,44 +26,69 @@ else:
     st.stop()
 
 # 標準化関数（塩の除去）
+
 def standardize_smiles(smiles):
-    mol = Chem.MolFromSmiles(smiles)
-    if mol is None:
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is None:
+            return None
+
+        # フラグメントを最大のものだけに限定（塩除去）
+        largest = LargestFragmentChooser()
+        mol = largest.choose(mol)
+
+        # 明示的に構造の整合性をチェック
+        Chem.SanitizeMol(mol)
+
+        # 立体情報などを含んだ標準的なSMILESに変換
+        return Chem.MolToSmiles(mol, isomericSmiles=True)
+
+    except Exception as e:
+        # 無効な構造はスキップ
+        print(f"[standardize_smiles] 無効な構造をスキップ: {smiles} ({e})")
         return None
-    standardizer = Standardizer()
-    standardized_mol = standardizer.standardize(mol)
-    return Chem.MolToSmiles(standardized_mol)
 
-# 完全一致検索関数
 def search_exact_match(query_smiles, smiles_list, ignore_stereo=False, include_salts=False):
-    query_mol = Chem.MolFromSmiles(query_smiles)
-    if query_mol is None:
-        return []
-
+    # クエリの標準化（必要に応じて塩除去）
     if not include_salts:
-        # クエリを標準化（塩除去）
-        query_smiles = standardize_smiles(query_smiles)
+        query_smiles_std = standardize_smiles(query_smiles)
+        if query_smiles_std is None:
+            return []
+    else:
+        query_smiles_std = query_smiles
+
+    try:
+        query_mol = Chem.MolFromSmiles(query_smiles_std)
+        if query_mol is None:
+            return []
+        if ignore_stereo:
+            Chem.RemoveStereochemistry(query_mol)
+    except Exception as e:
+        print(f"[クエリ分子読み込み失敗] {query_smiles_std} ({e})")
+        return []
 
     matched_smiles = []
     for smiles in smiles_list:
-        target_smiles = smiles
+        try:
+            if not include_salts:
+                target_smiles_std = standardize_smiles(smiles)
+                if target_smiles_std is None:
+                    continue
+            else:
+                target_smiles_std = smiles
 
-        # 標準化（塩除去）
-        if not include_salts:
-            target_smiles = standardize_smiles(smiles)
+            target_mol = Chem.MolFromSmiles(target_smiles_std)
+            if target_mol is None:
+                continue
+            if ignore_stereo:
+                Chem.RemoveStereochemistry(target_mol)
 
-        query_mol = Chem.MolFromSmiles(query_smiles)
-        target_mol = Chem.MolFromSmiles(target_smiles)
+            # Molオブジェクトで構造が一致するかをチェック
+            if query_mol.HasSubstructMatch(target_mol) and target_mol.HasSubstructMatch(query_mol):
+                matched_smiles.append(smiles)
 
-        if not target_mol:
-            continue
-
-        # 立体情報を無視
-        if ignore_stereo:
-            query_smiles = Chem.MolToSmiles(query_mol, isomericSmiles=False)
-            target_smiles = Chem.MolToSmiles(target_mol, isomericSmiles=False)
-
-        if query_smiles == target_smiles:
-            matched_smiles.append(smiles)
+        except Exception as e:
+            print(f"[検索中スキップ] SMILES: {smiles} ({e})")
+            continue  # 明示的にスキップ
 
     return matched_smiles

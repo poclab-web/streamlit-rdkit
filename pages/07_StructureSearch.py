@@ -31,11 +31,11 @@ def search_exact_match_display():
     smiles_list = tci_data['SMILES'].tolist()
 
     # ユーザーの入力
-    query_smiles = st.text_input("検索したいSMILESを入力してください", "", key="exact_match_query")
+    query_smiles = st.text_input("検索したいSMILESを入力してください", "C([C@@H]([C@@H]1C(=C(C(=O)O1)O)O)O)O", key="exact_match_query")
 
     # オプション設定
-    ignore_stereo = st.checkbox("立体異性体を無視する", value=False)
-    include_salts = st.checkbox("塩を含める（標準化しない）", value=True)
+    ignore_stereo = st.checkbox("立体異性体を無視する", value=True)
+    include_salts = st.checkbox("塩を含めず検索", value=False)
 
     if st.button("検索を実行", key="exact_match_search"):
         if not query_smiles:
@@ -77,7 +77,6 @@ def search_exact_match_display():
                         st.warning("表示可能なカラムが見つかりませんでした。元のデータを確認してください。")
             else:
                 st.error("該当する化合物は見つかりませんでした。")
-
 
 def smarts_search_display():
     st.title('Smarts Search 😀')
@@ -138,65 +137,68 @@ def smarts_search_display():
 def similarity_search_display():
     st.title('Similarity Search 😀')
 
+    # 注意書きを追加
+    st.warning("※ 類似性検索では現在、立体異性体や塩の扱いについて特別な処理は行っていません。今後、処理を加えます。")
+
     data_file = 'data/Reagents/TCI_output_part1.csv'  
     tci_data = pd.read_csv(data_file)
     smiles_list = tci_data['SMILES'].tolist()
 
     # ユーザーの入力
-    query_smiles = st.text_input("検索したいSMILESを入力してください", "CCO", key="similarity_query")
+    query_smiles = st.text_input("検索したいSMILESを入力してください", "C([C@@H]([C@@H]1C(=C(C(=O)O1)O)O)O)O", key="similarity_query")
 
-    # 類似性の閾値
-    threshold = st.slider("類似性の閾値", 0.0, 1.0, 0.7)
+    # 表示件数
+    top_n = st.number_input("類似性が近いものから何件表示しますか？", min_value=1, max_value=100, value=10, step=1)
 
-    # 類似性の計算方法を選択
-    similarity_method = st.selectbox("類似性の計算方法を選択してください", 
-                                     ["Tanimoto(ECFP radius2 2048bit)", "Normalized Levenshtein", "Descriptor", "MCS"])
-
-    # 計算時間の閾値
-    time_limit = st.slider("計算時間の閾値 (秒)", 1, 60, 10)
+    # 優先する手法を選択
+    method_options = {
+        "Tanimoto(ECFP radius2 2048bit)": "fingerprint",
+        "Normalized Levenshtein": "levenshtein",
+        "Descriptor": "descriptor",
+        "MCS": "mcs"
+    }
+    score_key_map = {
+        "fingerprint": "fingerprint_similarity",
+        "levenshtein": "normalized_levenshtein_distance",
+        "descriptor": "descriptor_distance",
+        "mcs": "mcs_similarity"
+    }
+    method_label = st.selectbox("何を優先して並べますか？", list(method_options.keys()))
+    selected_method = method_options[method_label]
+    selected_score_key = score_key_map[selected_method]
 
     if st.button("検索を実行", key="similarity_search"):
         if not query_smiles:
             st.warning("SMILESを入力してください！")
         else:
-            similar_compounds = []
-            calculation_times = []
+            all_methods = list(method_options.values())
+            results = []
 
-            def calculate_and_filter(smiles):
-                start_time = time.time()
-                similarity_scores = calculate_similarity(query_smiles, smiles)
-                elapsed_time = time.time() - start_time
-                calculation_times.append((smiles, elapsed_time))
-                if elapsed_time > time_limit:
-                    return None
-                if similarity_method == "Tanimoto(ECFP radius2 2048bit)" and similarity_scores["fingerprint_similarity"] >= threshold:
-                    return (smiles, similarity_scores, elapsed_time)
-                elif similarity_method == "Normalized Levenshtein" and similarity_scores["normalized_levenshtein_distance"] <= threshold:
-                    return (smiles, similarity_scores, elapsed_time)
-                elif similarity_method == "Descriptor" and similarity_scores["descriptor_distance"] <= threshold:
-                    return (smiles, similarity_scores, elapsed_time)
-                elif similarity_method == "MCS" and similarity_scores["mcs_similarity"] >= threshold:
-                    return (smiles, similarity_scores, elapsed_time)
-                return None
+            def calc(smiles):
+                scores = calculate_similarity(query_smiles, smiles, methods=all_methods)
+                return (smiles, scores)
 
             with concurrent.futures.ThreadPoolExecutor() as executor:
-                results = list(executor.map(calculate_and_filter, smiles_list))
+                calc_results = list(executor.map(calc, smiles_list))
 
-            similar_compounds = [result for result in results if result is not None]
+            # 並べ替え方向（Tanimoto, MCSは降順、他は昇順）
+            reverse_sort = True if selected_method in ["fingerprint", "mcs"] else False
+            calc_results.sort(key=lambda x: x[1][selected_score_key], reverse=reverse_sort)
 
-            # 計算時間を表示
-            st.write("### 各手法の計算時間")
-            for smiles, elapsed_time in calculation_times:
-                st.write(f"SMILES: {smiles}, 計算時間: {elapsed_time:.2f} 秒")
+            # 上位N件のみ
+            top_results = calc_results[:top_n]
 
-            if similar_compounds:
-                st.success(f"以下の化合物が見つかりました (合計: {len(similar_compounds)}):")
-
-                # 類似性が高い順にソート
-                similar_compounds.sort(key=lambda x: x[1][similarity_method.lower() + "_similarity"], reverse=True)
-
+            if top_results:
+                st.success(f"上位 {top_n} 件を表示します（{method_label}優先）")
                 # データフレームを作成して表示
-                df_similar = pd.DataFrame([(smiles, scores) for smiles, scores, _ in similar_compounds], columns=["SMILES", "Scores"])
+                columns = ["SMILES"] + [score_key_map[m] for m in all_methods]
+                df_similar = pd.DataFrame(
+                    [
+                        [smiles] + [scores[score_key_map[m]] for m in all_methods]
+                        for smiles, scores in top_results
+                    ],
+                    columns=columns
+                )
                 st.dataframe(df_similar)
             else:
                 st.error("該当する化合物は見つかりませんでした。")
