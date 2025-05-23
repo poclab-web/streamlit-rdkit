@@ -20,23 +20,32 @@ def draw_molecule_2d(smiles):
     img = Draw.MolToImage(mol, size=(500, 500))
     return img
 
-def smiles_to_data(smiles_list):
+def smiles_to_data(smiles_list, fields=None):
     """
-    SMILES文字列のリストから構造、分子量、molLogPを計算
+    Calculates specified properties (structure, molecular weight, molLogP, etc.) from a list of SMILES strings.
+    fields: List of output fields (e.g., ["Structure", "MolecularWeight", "molLogP"])
     """
+    if fields is None:
+        fields = ["Structure", "MolecularWeight", "molLogP"]  # Default: all fields
+
     data = []
     for smiles in smiles_list:
+        entry = {"SMILES": smiles}
         try:
             mol = Chem.MolFromSmiles(smiles)
             if mol:
-                # 分子量とmolLogPを計算
-                mol_weight = Descriptors.MolWt(mol)
-                mol_logp = Descriptors.MolLogP(mol)
-                # 構造の描画
-                img = Draw.MolToImage(mol, size=(150, 150))
-                data.append({"SMILES": smiles, "構造": img, "分子量": mol_weight, "molLogP": mol_logp})
+                if "Structure" in fields:
+                    img = Draw.MolToImage(mol, size=(150, 150))
+                    entry["Structure"] = img
+                if "MolecularWeight" in fields:
+                    entry["MolecularWeight"] = Descriptors.MolWt(mol)
+                if "molLogP" in fields:
+                    entry["molLogP"] = Descriptors.MolLogP(mol)
             else:
-                data.append({"SMILES": smiles, "構造": "無効なSMILES", "分子量": "-", "molLogP": "-"})
+                for f in fields:
+                    entry[f] = "Invalid SMILES" if f == "Structure" else "-"
         except Exception as e:
-            data.append({"SMILES": smiles, "構造": str(e), "分子量": "-", "molLogP": "-"})
+            for f in fields:
+                entry[f] = str(e) if f == "Structure" else "-"
+        data.append(entry)
     return data

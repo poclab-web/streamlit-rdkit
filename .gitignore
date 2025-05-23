@@ -171,3 +171,5 @@ cython_debug/
 
 output.sdf
 sample.png
+
+.pyc

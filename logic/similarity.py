@@ -3,6 +3,7 @@ from rdkit.Chem import DataStructs, Descriptors
 from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit.Chem import rdFMCS
 import numpy as np
+import concurrent.futures
 
 def normalized_levenshtein_distance(s1: str, s2: str) -> float:
     """
@@ -78,43 +79,56 @@ def calculate_mcs_similarity(mol1, mol2) -> float:
     similarity = (2 * mcs_size) / (mol1_size + mol2_size)
     return similarity
 
-def calculate_similarity(smiles1: str, smiles2: str) -> dict:
+def calculate_similarity(
+    smiles1: str,
+    smiles2: str,
+    methods: list = None
+) -> dict:
     """
-    Calculate the similarity between two compounds given their SMILES strings using different methods.
+    Calculate the similarity between two compounds given their SMILES strings using selected methods.
 
     Args:
         smiles1 (str): SMILES string of the first compound.
         smiles2 (str): SMILES string of the second compound.
+        methods (list, optional): List of similarity methods to use.
+            Options: "fingerprint", "levenshtein", "descriptor", "mcs".
+            If None, all methods are used.
 
     Returns:
-        dict: Dictionary containing similarity scores from different methods.
+        dict: Dictionary containing similarity scores from selected methods.
     """
+    if methods is None:
+        methods = ["fingerprint", "levenshtein", "descriptor", "mcs"]
+
     mol1 = Chem.MolFromSmiles(smiles1)
     mol2 = Chem.MolFromSmiles(smiles2)
-    
+
     if mol1 is None or mol2 is None:
         raise ValueError("Invalid SMILES string provided.")
-    
-    # Fingerprint similarity
-    fp1 = FingerprintMols.FingerprintMol(mol1)
-    fp2 = FingerprintMols.FingerprintMol(mol2)
-    fingerprint_similarity = DataStructs.FingerprintSimilarity(fp1, fp2)
-    
-    # Normalized Levenshtein distance
-    norm_lev_distance = normalized_levenshtein_distance(smiles1, smiles2)
-    
-    # Descriptor-based Euclidean distance
-    descriptor_distance = calculate_descriptor_distance(mol1, mol2)
-    
-    # MCS similarity
-    mcs_similarity = calculate_mcs_similarity(mol1, mol2)
-    
-    return {
-        "fingerprint_similarity": fingerprint_similarity,
-        "normalized_levenshtein_distance": norm_lev_distance,
-        "descriptor_distance": descriptor_distance,
-        "mcs_similarity": mcs_similarity
-    }
+
+    results = {}
+
+    def calc(method):
+        if method == "fingerprint":
+            fp1 = FingerprintMols.FingerprintMol(mol1)
+            fp2 = FingerprintMols.FingerprintMol(mol2)
+            return ("fingerprint_similarity", DataStructs.FingerprintSimilarity(fp1, fp2))
+        elif method == "levenshtein":
+            return ("normalized_levenshtein_distance", normalized_levenshtein_distance(smiles1, smiles2))
+        elif method == "descriptor":
+            return ("descriptor_distance", calculate_descriptor_distance(mol1, mol2))
+        elif method == "mcs":
+            return ("mcs_similarity", calculate_mcs_similarity(mol1, mol2))
+        else:
+            return (method, None)
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = {executor.submit(calc, method): method for method in methods}
+        for future in concurrent.futures.as_completed(futures):
+            key, value = future.result()
+            results[key] = value
+
+    return results
 
 def find_similar_compounds(query_smiles: str, smiles_list: list, threshold: float = 0.7) -> list:
     """
