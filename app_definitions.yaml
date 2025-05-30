@@ -227,7 +227,7 @@ apps:
 
 # フィルター法による記述子の削減
   - title: "📊 フィルター法"
-    # function: 
+    function:  "pages.08_ExploratoryAnalysis.filter_display"
     category: "ExploratoryAnalysis"
     description: "フィルター法により指標を削減します"
     show_code: true

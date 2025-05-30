@@ -2,6 +2,9 @@
 __pycache__/
 logic/__pycache__/*
 pages/__pycache__/*
+utils/__pycache__/*
+# Byte-compiled / optimized Python files
+.pyc
 *.py[cod]
 *$py.class
 
