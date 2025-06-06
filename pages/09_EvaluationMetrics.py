@@ -9,6 +9,7 @@ import pandas as pd
 from logic.metrics import calculate_regression_metrics, create_yyplot
 from logic.metrics import calculate_classification_metrics, calculate_confusion_matrix
 from sklearn.datasets import load_diabetes
+import numpy as np
 
 def split_data_display():
     """
@@ -210,10 +211,14 @@ def display_regression_metrix():
     else:
         dataset_name = st.selectbox("scikit-learnのデータセットを選択してください", ["Diabetes", ])
         if dataset_name == "Diabetes":
+            # random seedをStreamlitで指定
+            random_seed = st.number_input("ノイズ生成用Random seed", min_value=0, max_value=10000, value=42, step=1)
             data = load_diabetes()
             X, y = data.data, data.target
             y_true = y[:50]  # 最初の50サンプルを実際の値とする
-            y_pred = y_true + (0.1 * y_true.std()) * (2 * (pd.Series(range(50)) % 2) - 1)  # ノイズを加えた予測値
+            rng = np.random.default_rng(int(random_seed))
+            noise = rng.normal(0, y_true.std() * 0.1, size=len(y_true))
+            y_pred = y_true + noise  # ランダムノイズを加えた予測値
             df = pd.DataFrame({"actual": y_true, "predicted": y_pred})
             st.write("使用するデータセット:")
             st.write(df)
