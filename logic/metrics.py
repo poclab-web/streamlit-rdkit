@@ -43,3 +43,42 @@ def calculate_regression_metrics(y_true, y_pred):
         "R2": r2
     }
 
+def calculate_confusion_matrix(y_true, y_pred):
+    """
+    分類問題の混同行列を計算する関数。
+
+    Parameters:
+        y_true (array-like): 実際のクラスラベル。
+        y_pred (array-like): 予測されたクラスラベル。
+
+    Returns:
+        np.ndarray: 混同行列。
+    """
+    from sklearn.metrics import confusion_matrix
+    return confusion_matrix(y_true, y_pred)
+
+def calculate_classification_metrics(y_true, y_pred):
+    """
+    分類評価指標を計算する関数。
+
+    Parameters:
+        y_true (array-like): 実際のクラスラベル。
+        y_pred (array-like): 予測されたクラスラベル。
+
+    Returns:
+        dict: 計算された指標を含む辞書。
+    """
+    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
+    accuracy = accuracy_score(y_true, y_pred)
+    precision = precision_score(y_true, y_pred, average='weighted')
+    recall = recall_score(y_true, y_pred, average='weighted')
+    f1 = f1_score(y_true, y_pred, average='weighted')
+    mcc = matthews_corrcoef(y_true, y_pred)
+    
+    return {
+        "Accuracy": accuracy,
+        "Precision": precision,
+        "Recall": recall,
+        "F1 Score": f1,
+        "MCC": mcc
+    }
