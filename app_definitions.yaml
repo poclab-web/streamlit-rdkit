@@ -236,27 +236,25 @@ apps:
 # 9.評価指標 EvaluationMetrics
 # データの分割方法について書く。
   - title: "📊 データの分割"
-    # function: 
+    function: pages.09_EvaluationMetrics.split_data_display
     category: "EvaluationMetrics"
     description: "データの分割を行います。ホールドアウト、交差検証による分割を行う"
     show_code: true
     # logic_functions:
-
-# 評価指標
+# 回帰の評価指標
   - title: "📊 回帰分析の評価指標"
     function: pages.09_EvaluationMetrics.display_regression_metrix
     category: "EvaluationMetrics"
     description: "回帰における評価指標の算出を行います。"
     show_code: true
     logic_functions: logic.metrics.calculate_regression_metrics
-    logic_functions: logic.metrics.create_yyplot
-
+# 分類の評価指標
   - title: "📊 分類の評価指標"
-    # function: 
+    function: pages.09_EvaluationMetrics.display_classification_metrix
     category: "EvaluationMetrics"
     description: "分類における評価指標の算出を行います。"
     show_code: true
-    # logic_functions:
+    logic_functions: logic.metrics.calculate_classification_metrics
 
 
 # 10.機械学習 MachineLearning
