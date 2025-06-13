@@ -20,6 +20,3 @@ openbabel-wheel
 -f https://conda.anaconda.org/conda-forge
 rdkit
 
-# PySCFのインストールをGitHubから指定
-git+https://github.com/pyscf/properties
-git+https://github.com/pyscf/semiempirical
