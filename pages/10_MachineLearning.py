@@ -28,7 +28,7 @@ def get_wine_data(task="regression", standardize=False):
 
     if task == "regression":
         y = X["color_intensity"]
-        X = X.drop(["color_intensity", "od280/od315_of_diluted_wines"], axis=1)
+        X = X.drop(["color_intensity", "od280/od315_of_diluted_wines", "hue"], axis=1)
 
     elif task == "classification":
         y = data.target
