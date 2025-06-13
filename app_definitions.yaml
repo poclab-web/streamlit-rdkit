@@ -259,42 +259,42 @@ apps:
 
 # 10.機械学習 MachineLearning
   - title: "📊 線形回帰"
-    # function: 
+    function: pages.10_MachineLearning.linear_regression_display
     category: "MachineLearning"
     description: "線形回帰"
     show_code: true
     # logic_functions:
 
   - title: "📊 分類(ロジスティック回帰)"
-    # function: 
+    function: pages.10_MachineLearning.logistic_regression_display
     category: "MachineLearning"
     description: "ロジスティック回帰"
     show_code: true
     # logic_functions:
 
   - title: "📊 KNN回帰"
-    # function: 
+    function: pages.10_MachineLearning.knn_regression_display
     category: "MachineLearning"
     description: "線形回帰"
     show_code: true
     # logic_functions:
 
   - title: "📊 KNN分類"
-    # function: 
+    function: pages.10_MachineLearning.knn_classification_display
     category: "MachineLearning"
     description: "ロジスティック回帰"
     show_code: true
     # logic_functions:
 
   - title: "📊 決定木回帰"
-    # function: 
+    function: pages.10_MachineLearning.decision_tree_regression_display
     category: "MachineLearning"
     description: "線形回帰"
     show_code: true
     # logic_functions:
 
   - title: "📊 決定木分類"
-    # function: 
+    function: pages.10_MachineLearning.decision_tree_classification_display
     category: "MachineLearning"
     description: "ロジスティック回帰"
     show_code: true
