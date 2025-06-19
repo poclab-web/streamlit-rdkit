@@ -15,6 +15,7 @@ openpyxl
 requests
 molvs
 openbabel-wheel
+shap
 
 # rdkitのインストールをconda-forge経由で指定
 -f https://conda.anaconda.org/conda-forge
