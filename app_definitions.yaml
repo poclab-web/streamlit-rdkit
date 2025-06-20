@@ -302,19 +302,19 @@ apps:
 
 # 11.解釈性 Interpretability
   - title: "📊 1. データ分布の可視化"
-    # function: 
+    function: pages.11_Interpretability.visualization_display
     category: "Interpretability"
     description: "PCA, tsne, UMAPを用いてデータを可視化します。"
     show_code: true
 
   - title: "📊 2. ADの結果を表示"
-    # function: 
+    function: pages.11_Interpretability.AD_visualization_display
     category: "Interpretability"
     description: "適用範囲(AD)の結果を表示します。"
     show_code: true
 
   - title: "📊 3.SHAPの結果を表示"
-    # function: 
+    function: pages.11_Interpretability.shap_display
     category: "Interpretability"
     description: "SHAPを用いてモデルの解釈性を向上させます。"
     show_code: true
