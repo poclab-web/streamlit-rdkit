@@ -28,7 +28,7 @@ from logic.FingerPrint import morgan_fingerprint
 
 # アプリの定義
 
-df = pd.read_csv(".data/processed/mp_logs_logp_1212_with_info.csv")
+df = pd.read_csv(".models/mp_logs_logp_1212_with_info.csv")
 
 def smiles_to_ecfp(smiles, radius=2, n_bits=2048):
     mol = Chem.MolFromSmiles(smiles)
