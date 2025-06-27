@@ -304,7 +304,7 @@ apps:
   - title: "📊 1. データ分布の可視化"
     function: pages.11_Interpretability.visualization_display
     category: "Interpretability"
-    description: "PCA, tsne, UMAPを用いてデータを可視化します。"
+    description: "PCAを用いてデータを可視化します。"
     show_code: true
 
   - title: "📊 2. ADの結果を表示"
@@ -320,20 +320,25 @@ apps:
     show_code: true
 
 # 12.難易度 DifficultyAdjustment
+  - title: "融点、溶解度、logPデータの確認"
+    function: pages.12_DifficultyAdjustment.difficulty_adjustment_display
+    category: "DifficultyAdjustment"
+    description: "融点、溶解度、logPのデータを確認します。"
+    show_code: true
   - title: "📊 融点予測"
-    # function: 
+    function: pages.12_DifficultyAdjustment.melting_point_prediction
     category: "DifficultyAdjustment"
     description: "融点の予測を行います。"
     show_code: true
 
   - title: "📊 溶解度予測"
-    # function: 
+    function: pages.12_DifficultyAdjustment.solubility_prediction_display
     category: "DifficultyAdjustment"
     description: "溶解度の予測を行います。"
     show_code: true
 
   - title: "📊 logP予測"
-    # function: 
+    function: pages.12_DifficultyAdjustment.logp_prediction_display
     category: "DifficultyAdjustment"
     description: "logPの予測を行います。"
     show_code: true
