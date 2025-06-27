@@ -176,3 +176,4 @@ output.sdf
 sample.png
 
 .pyc
+.DS_Store
