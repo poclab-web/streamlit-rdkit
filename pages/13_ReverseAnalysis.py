@@ -108,10 +108,13 @@ def structure_isomer_output_display():
 
 
 # TODO: 逆解析の表示機能を実装する
-# def reverse_analysis_display():
-#     st.title("📊 逆解析")
-#     st.write("ここでは、予測モデルを組み合わせて構造を出力します。")
+def reverse_analysis_display():
+    st.title("📊 逆解析")
+    st.write("ここでは、予測モデルを組み合わせて構造を出力します。")
 
+    st.warning("この機能はまだ実装されていません。")
+
+# 以下は実装例のコメントアウト
 #     # データの読み込み
 #     df = load_shift_output()
 #     if "smiles" not in df.columns or "Shift_Value" not in df.columns:
