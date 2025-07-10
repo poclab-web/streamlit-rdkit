@@ -344,20 +344,20 @@ apps:
     show_code: true
 
 # 13.逆解析 ReverseAnalysis
-  - title: "📊 IRの予測"
-    # function: 
+  - title: "📊 NMRの13C NMRのデータとHOSEコード​"
+    function: "pages.13_ReverseAnalysis.nmr_13c_hose_display"
     category: "ReverseAnalysis"
     description: "分子力場によるIRの予測"
     show_code: true
 
-  - title: "📊 NMRの予測"
-    # function: 
+  - title: "📊 構造異性体の出力"
+    function: "pages.13_ReverseAnalysis.structure_isomer_output_display" 
     category: "ReverseAnalysis"
     description: "NMRの予測モデル"
     show_code: true
 
-  - title: "📊 組み合わせ予測による構造出力"
-    # function: 
+  - title: "📊 逆解析"
+    function: "pages.13_ReverseAnalysis.reverse_analysis_display"
     category: "ReverseAnalysis"
     description: "予測モデルを組み合わせて構造を出力します。"
     show_code: true
