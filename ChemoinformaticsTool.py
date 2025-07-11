@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from rdkit import Chem, rdBase
+import sklearn
 
 from utils.yaml_loader import load_yaml
 from utils.sidebar import display_sidebar
@@ -33,6 +35,14 @@ category_df = pd.DataFrame(category_data)
 
 # 表形式で表示 (HTMLリンクを許可する)
 st.write(category_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+
+# 使用している主なライブラリのバージョンを表示
+st.markdown("### 使用しているライブラリのバージョン")
+st.write("以下のライブラリを使用しています。")
+st.write("Streamlit:", st.__version__)
+st.write("Pandas:", pd.__version__)
+st.write("RDKit:", rdBase.rdkitVersion)    
+st.write("sklearn:", sklearn.__version__)
 
 # サイドバーを表示
 display_sidebar()
