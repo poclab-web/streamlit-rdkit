@@ -364,9 +364,21 @@ apps:
 
 # 14.化学空間 ChemicalSpace
   - title: "📊 異なる化学空間の比較"
-    # function: 
+    function: "pages.14_ChemicalSpace.chemical_space_comparison_display"
     category: "ChemicalSpace"
-    description: "化学空間が異なるものをMQN, SMIfp, RDKit descriptor比較し、図示します。"
+    description: "化学空間が異なるものをRDKit descriptor比較し、図示します。"
+    show_code: true
+
+  - title: "📊 異なる化学空間の比較 (MQN)"
+    function: "pages.14_ChemicalSpace.chemical_space_mqn_comparison_display"
+    category: "ChemicalSpace"
+    description: "化学空間が異なるものをtanimotoで比較し、図示します。"
+    show_code: true 
+
+  - title: "📊 異なる化学空間の比較 (SMIfp)"
+    function: "pages.14_ChemicalSpace.chemical_space_smifp_comparison_display" 
+    category: "ChemicalSpace"
+    description: "化学空間が異なるものをmorganで比較し、図示します。"
     show_code: true
 
 # 15.内挿外挿 InterpolationExtrapolation
