@@ -17,6 +17,7 @@ molvs
 openbabel-wheel
 shap
 catboost
+selfies
 
 # rdkitのインストールをconda-forge経由で指定
 -f https://conda.anaconda.org/conda-forge
