@@ -382,10 +382,22 @@ apps:
     show_code: true
 
 # 15.内挿外挿 InterpolationExtrapolation
-  - title: "📊 記述子を用いた内挿外挿の検討"
-    # function: 
+  - title: "📊 ランダム分割による機械学習解析"
+    function: "pages.15_InterpolationExtrapolation.random_split_analysis"
     category: "InterpolationExtrapolation"
-    description: "記述子を変えながら内挿や外挿を検討した結果。"
+    description: "ランダム分割による標準的な機械学習解析を行います。"
+    show_code: true
+
+  - title: "📊 高選択性予測解析"
+    function: "pages.15_InterpolationExtrapolation.high_selectivity_prediction"
+    category: "InterpolationExtrapolation"
+    description: "高い選択性を持つサンプルに対する予測性能を評価します。"
+    show_code: true
+
+  - title: "📊 骨格分割による外挿評価"
+    function: "pages.15_InterpolationExtrapolation.scaffold_based_split_analysis"
+    category: "InterpolationExtrapolation"
+    description: "ユニーク骨格を用いた外挿性能の評価を行います。"
     show_code: true
 
 # 16.論文検索 LiteratureSearch
