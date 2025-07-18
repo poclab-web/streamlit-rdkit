@@ -188,6 +188,28 @@ def random_split_analysis():
             st.metric("トレーニングデータ MSE", f"{mean_squared_error(y_train, y_pred_train):.3f}")
             st.metric("トレーニングデータ R²", f"{r2_score(y_train, y_pred_train):.3f}")
         
+        # モデル情報
+        st.subheader("モデル情報")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.write("**使用したモデル**")
+            st.write("Random Forest Regressor")
+            st.write("**パラメータ**")
+            st.write(f"- n_estimators: {rf_model.n_estimators}")
+            st.write(f"- max_depth: {rf_model.max_depth}")
+            st.write(f"- min_samples_split: {rf_model.min_samples_split}")
+            st.write(f"- min_samples_leaf: {rf_model.min_samples_leaf}")
+            st.write(f"- random_state: {rf_model.random_state}")
+        
+        with col2:
+            st.write("**データ分割情報**")
+            st.write("ランダム分割")
+            st.write(f"- 学習データ: {len(X_train)} サンプル ({len(X_train)/(len(X_train)+len(X_test))*100:.1f}%)")
+            st.write(f"- テストデータ: {len(X_test)} サンプル ({len(X_test)/(len(X_train)+len(X_test))*100:.1f}%)")
+            st.write(f"- 使用記述子数: {len(descriptor_names)}")
+            st.write(f"- random_state: 42")
+        
         # 可視化
         st.subheader("可視化")
         fig = plot_predictions(y_train, y_pred_train, y_test, y_pred_test)
@@ -327,6 +349,28 @@ def high_selectivity_prediction():
             st.metric("サンプル数", len(df_train))
             st.metric("ΔΔG.expt. 範囲", f"{y_train.min():.3f} ~ {y_train.max():.3f}")
             st.metric("ΔΔG.expt. 平均", f"{y_train.mean():.3f}")
+        
+        # モデル情報
+        st.subheader("モデル情報")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.write("**使用したモデル**")
+            st.write("Random Forest Regressor")
+            st.write("**パラメータ**")
+            st.write(f"- n_estimators: {rf_model.n_estimators}")
+            st.write(f"- max_depth: {rf_model.max_depth}")
+            st.write(f"- min_samples_split: {rf_model.min_samples_split}")
+            st.write(f"- min_samples_leaf: {rf_model.min_samples_leaf}")
+            st.write(f"- random_state: {rf_model.random_state}")
+        
+        with col2:
+            st.write("**データ分割情報**")
+            st.write("ΔΔG.expt.値による分割")
+            st.write(f"- 学習データ: {len(X_train)} サンプル (下位80%)")
+            st.write(f"- テストデータ: {len(X_test)} サンプル (上位20%)")
+            st.write(f"- 使用記述子数: {len(descriptor_names)}")
+            st.write(f"- 分割基準: ΔΔG.expt.昇順")
         
         # 可視化
         st.subheader("可視化")
@@ -509,6 +553,28 @@ def scaffold_based_split_analysis():
             st.metric("ΔΔG.expt. 平均", f"{y_train.mean():.3f}")
             st.metric("ユニーク骨格数", len(set(df_train['scaffold'])))
         
+        # モデル情報
+        st.subheader("モデル情報")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.write("**使用したモデル**")
+            st.write("Random Forest Regressor")
+            st.write("**パラメータ**")
+            st.write(f"- n_estimators: {rf_model.n_estimators}")
+            st.write(f"- max_depth: {rf_model.max_depth}")
+            st.write(f"- min_samples_split: {rf_model.min_samples_split}")
+            st.write(f"- min_samples_leaf: {rf_model.min_samples_leaf}")
+            st.write(f"- random_state: {rf_model.random_state}")
+        
+        with col2:
+            st.write("**データ分割情報**")
+            st.write("骨格による分割")
+            st.write(f"- 学習データ: {len(X_train)} サンプル (複数例がある骨格)")
+            st.write(f"- テストデータ: {len(X_test)} サンプル (ユニーク骨格)")
+            st.write(f"- 使用記述子数: {len(descriptor_names)}")
+            st.write(f"- 分割基準: Murcko骨格")
+        
         # 可視化
         st.subheader("可視化")
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
@@ -615,7 +681,6 @@ def scaffold_based_split_analysis():
 if __name__ == "__main__":
     # 現在のカテゴリー（手動設定）
     current_category = "InterpolationExtrapolation"  # 正しいカテゴリーキーを指定
-    st.write(f"現在のカテゴリー: {current_category}")  # デバッグ用
         
     # ページ共通のタブ処理
     handle_tabs_for_category(current_category)
